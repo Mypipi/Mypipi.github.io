@@ -968,7 +968,7 @@ pre .javascript .function {
   width: 22px;
   height: 2px;
   background: #555;
-  border-radius: 1px;
+  border-radius: 3px;
 }
 .btn-bar+.btn-bar {
   margin-top: 4px;
@@ -1669,7 +1669,7 @@ pre .javascript .function {
   width: 0;
   z-index: 1040;
   box-shadow: inset 0 2px 6px #000;
-  background: #222;
+  background: 20px;
   -webkit-transform: translateZ(0);
 }
 .sidebar a {
@@ -1921,7 +1921,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2a1bf4;
+  background: #ffff9f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2733,7 +2733,7 @@ img:hover {
   width: 240px;
   background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
-  border-radius: initial;
+  border-radius: 10px;
 }
 @media (min-width: 1600px) {
   .container .header-inner {
@@ -2790,9 +2790,10 @@ img:hover {
   box-sizing: border-box;
   padding: 40px;
   width: calc(100% - 252px);
+  background: rgba(255,255,255,0.7);
   min-height: 700px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
-  border-radius: initial;
+  border-radius: 10px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -2813,8 +2814,8 @@ img:hover {
   position: static;
   float: left;
   margin-top: 300px;
-  width: 240px;
-  background: #eee;
+  width: 0px;
+  background: rgba(255,255,255,0.7);
   box-shadow: none;
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -2971,9 +2972,9 @@ img:hover {
   box-sizing: border-box;
   width: 240px;
   color: #555;
-  background: #fff;
+  background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  border-radius: initial;
+  border-radius: 10px;
   opacity: 0;
 }
 .sidebar-inner.affix {
@@ -3109,12 +3110,12 @@ img:hover {
   padding: 40px;
   background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
-  border-radius: initial;
+  border-radius: 10px;
 }
 #posts > article + article .post-block {
   margin-top: 12px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  border-radius: initial;
+  border-radius: 10px;
 }
 .comments {
   padding: 40px;
@@ -3122,7 +3123,7 @@ img:hover {
   margin-top: 12px;
   background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  border-radius: initial;
+  border-radius: 10px;
 }
 .posts-expand {
   padding-top: initial;
@@ -3142,7 +3143,7 @@ img:hover {
   border-top: initial;
   background: rgba(255,255,255,0.7);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-  border-radius: initial;
+  border-radius: 10px;
   padding: 10px 0 10px;
 }
 .pagination .prev,
@@ -3201,7 +3202,7 @@ img:hover {
   .post-block {
     padding: 20px;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-    border-radius: initial;
+    border-radius: 10px;
   }
   #posts > article + article .post-block {
     margin-top: 10px;
@@ -3231,7 +3232,7 @@ img:hover {
     padding: 12px;
     min-height: auto;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
-    border-radius: initial;
+    border-radius: 10px;
   }
   #posts > article + article .post-block {
     margin-top: 8px;
@@ -3265,12 +3266,12 @@ pre {
   border-bottom: none;
   border-bottom: 1px solid #fc6423;
 }
+.header {
+  line-height: 1.5;
+}
 .headband {
   height: 1.5px;
   background-image: linear-gradient(90deg, #f79533 0%, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%);
-}
-.header {
-  line-height: 1.5;
 }
 .back-to-top {
   line-height: 1.5;
@@ -3286,30 +3287,13 @@ pre {
 .back-to-top.back-to-top-on {
   bottom: 10px;
 }
+body {
+  background: url("https://i.postimg.cc/vTPjrYjv/body-girlasideflower.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
 .site-overview {
-  line-height: 1.3;
-}
-.links-of-blogroll-title {
-  margin-bottom: 10px;
-  margin-top: 15px;
-  color: rgba(7,179,155,0.75);
-  margin-left: 6px;
-  font-size: 15px;
-  font-weight: bold;
-}
-.backstretch {
-  opacity: 0.75;
-}
-.content-wrap,
-.sidebar {
-  opacity: 0.9 !important;
-}
-.header-inner {
-  background: rgba(255,255,255,0.9) !important;
-}
-.sidebar-toggle {
-  background: #649ab6;
-}
-.back-to-top {
-  background: #649ab6;
+  line-height: 1.35;
 }
