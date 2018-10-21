@@ -1921,7 +1921,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff9938;
+  background: #2a1bf4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2790,7 +2790,6 @@ img:hover {
   box-sizing: border-box;
   padding: 40px;
   width: calc(100% - 252px);
-  background: #fff;
   min-height: 700px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   border-radius: initial;
@@ -2972,7 +2971,7 @@ img:hover {
   box-sizing: border-box;
   width: 240px;
   color: #555;
-  background: rgba(255,255,255,0.7);
+  background: #fff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   border-radius: initial;
   opacity: 0;
@@ -3273,9 +3272,6 @@ pre {
 .header {
   line-height: 1.5;
 }
-.site-meta {
-  background-image: linear-gradient(90deg, #f79533 0%, #f37055 15%, #ef4e7b 30%, #a166ab 44%, #5073b8 58%, #1098ad 72%, #07b39b 86%, #6dba82 100%);
-}
 .back-to-top {
   line-height: 1.5;
   right: 10px;
@@ -3300,4 +3296,20 @@ pre {
   margin-left: 6px;
   font-size: 15px;
   font-weight: bold;
+}
+.backstretch {
+  opacity: 0.75;
+}
+.content-wrap,
+.sidebar {
+  opacity: 0.9 !important;
+}
+.header-inner {
+  background: rgba(255,255,255,0.9) !important;
+}
+.sidebar-toggle {
+  background: #649ab6;
+}
+.back-to-top {
+  background: #649ab6;
 }
