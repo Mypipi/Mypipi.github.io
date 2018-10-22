@@ -1921,7 +1921,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d27520;
+  background: #c28efa;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3296,4 +3296,36 @@ body {
 }
 .site-overview {
   line-height: 1.35;
+}
+aplayer-list ol li:hover {
+/*列表悬停颜色*/
+  background: #fff none repeat scroll !important;
+}
+.aplayer-list ol li {
+/*列表底色*/
+  background: #fff;
+}
+.aplayer-list-light {
+/*列表播放歌曲颜色*/
+  background: #fff none repeat scroll !important;
+}
+#player1 {
+/*边框样式*/
+  border-radius: 6px;
+}
+#player1 div,
+#player1 ol {
+  border-radius: 6px;
+}
+#player1 * {
+  color: #fff;
+}
+.aplayer-list-index {
+  float: left;
+}
+.aplayer-list-title {
+  float: left;
+}
+.aplayer-list-author {
+  float: right;
 }
