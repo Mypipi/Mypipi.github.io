@@ -1921,7 +1921,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #860966;
+  background: #6ce0cb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3302,7 +3302,7 @@ body {
 .site-overview {
   line-height: 1.35;
 }
-aplayer-list ol li:hover {
+.aplayer-list ol li:hover {
 /*列表悬停颜色*/
   background: #fff none repeat scroll !important;
 }
