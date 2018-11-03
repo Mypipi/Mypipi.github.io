@@ -97,7 +97,7 @@
 <meta property="og:description" content="Welcome to read">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/10/28/5bd513ad89d47.png">
-<meta property="og:updated_time" content="2018-10-28T01:42:42.000Z">
+<meta property="og:updated_time" content="2018-11-03T11:28:02.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Vultr搭建SSR">
 <meta name="twitter:description" content="Welcome to read">
@@ -350,7 +350,7 @@
           
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="https://i.loli.net/2018/10/28/5bd513ad89d47.png" rel="gallery_cjnyrj8cl0008kywz38fgs53l" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://i.loli.net/2018/10/28/5bd513ad89d47.png" rel="gallery_cjo1fl7np0007iwwz314u00u1" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://i.loli.net/2018/10/28/5bd513ad89d47.png" itemprop="contentUrl">
               </a>
             
@@ -375,19 +375,19 @@
 <p><strong>首先我们需要登陆到我们的服务器端，Windows平台可以用xshell，进行相关配置就可以登陆。</strong><br><strong>Macos可以直接用终端进行登陆具体命令是ssh root@你的ip 然后回车，输入服务器密码。</strong><br><strong>ps：这里的密码是密文，可以直接从购买平台复制粘贴即可。之后在终端输入</strong></p>
 </blockquote>
 <blockquote>
-<p><strong>中文版安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate -O shadowsocks-libev_CN.<span class="keyword">sh</span></span><br><span class="line">http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/uxh/shadowsocks_bash/</span><br><span class="line">master/shadowsocks-libev_CN.<span class="keyword">sh</span> &amp;&amp; bash shadowsocks-libev_CN.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p><strong>英文版安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate -O shadowsocks-libev.<span class="keyword">sh</span> </span><br><span class="line">http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/uxh/shadowsocks_bash/</span><br><span class="line">master/shadowsocks-libev.<span class="keyword">sh</span> &amp;&amp; bash shadowsocks-libev.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>shadowsocks安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget –<span class="keyword">no</span>-check-certificate -O shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span> http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/teddysun/shadowsocks_install/master/shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span></span><br><span class="line">./shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee shadowsocks-<span class="keyword">all</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p><strong>执行命令之后设置自己SSR的登陆密码，接下去一次是ss端口设置和加密设置。不懂得直接回车即可。</strong></p>
 </blockquote>
 <h2 id="安装TCP加速软件"><a href="#安装TCP加速软件" class="headerlink" title="安装TCP加速软件"></a>安装TCP加速软件</h2><blockquote>
-<p><strong>因为配置完毕后SSR的速度可能较慢这时候我们就需要一个加速器来加速这里推荐锐速。</strong><br><strong>centos6的安装命令</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O appex<span class="selector-class">.sh</span> </span><br><span class="line">https:<span class="comment">//raw.githubusercontent.com/0oVicero0/</span></span><br><span class="line">serverSpeeder_Install/master/appex<span class="selector-class">.sh</span> &amp;&amp; bash</span><br><span class="line"> appex<span class="selector-class">.sh</span> install <span class="string">'2.6.32-642.el6.x86_64'</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>因为配置完毕后SSR的速度可能较慢这时候我们就需要一个加速器来加速这里推荐锐速。</strong><br><strong>centos6锐速的安装命令</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O appex<span class="selector-class">.sh</span> </span><br><span class="line">https:<span class="comment">//raw.githubusercontent.com/0oVicero0/</span></span><br><span class="line">serverSpeeder_Install/master/appex<span class="selector-class">.sh</span> &amp;&amp; bash</span><br><span class="line"> appex<span class="selector-class">.sh</span> install <span class="string">'2.6.32-642.el6.x86_64'</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
-<p><strong>centos7的安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate -O rskernel.<span class="keyword">sh</span> </span><br><span class="line">http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/uxh/shadowsocks_bash</span><br><span class="line">/master/rskernel.<span class="keyword">sh</span> &amp;&amp; bash rskernel.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>centos7锐速的安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate -O rskernel.<span class="keyword">sh</span> </span><br><span class="line">http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/uxh/shadowsocks_bash</span><br><span class="line">/master/rskernel.<span class="keyword">sh</span> &amp;&amp; bash rskernel.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>BBR的安装命令centos6/7通用</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> wget</span><br><span class="line">wget –<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//github.<span class="keyword">com</span>/teddysun/across/raw/master/bbr.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> bbr.<span class="keyword">sh</span></span><br><span class="line">./bbr.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <blockquote>
 <p><strong>各位可以根据自己的系统选择相应的安装包下载。安装完毕后如果有显示Runing就是安装成功。大功告成!</strong></p>
@@ -434,8 +434,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/Linux小记/" rel="next" title="Linux的命令">
-                <i class="fa fa-chevron-left"></i> Linux的命令
+              <a href="/2018/10/11/Linux小记（一）/" rel="next" title="Linux小记（一）">
+                <i class="fa fa-chevron-left"></i> Linux小记（一）
               </a>
             
           </div>
@@ -444,8 +444,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/24/Linux小记（一）/" rel="prev" title="Linux小记（一）">
-                Linux小记（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/10/24/Linux小记（二）/" rel="prev" title="Linux小记（二）">
+                Linux小记（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
