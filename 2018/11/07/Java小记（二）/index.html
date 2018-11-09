@@ -97,7 +97,7 @@
 <meta property="og:description" content="Welcome to read">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/11/08/5be30dda9732b.png">
-<meta property="og:updated_time" content="2018-11-07T16:08:07.823Z">
+<meta property="og:updated_time" content="2018-11-09T05:58:03.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java小记（二）">
 <meta name="twitter:description" content="Welcome to read">
@@ -317,6 +317,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -350,7 +372,7 @@
           
           
             <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox" href="https://i.loli.net/2018/11/08/5be30dda9732b.png" rel="gallery_cjo7d9xwt00063bwz4wvoy70f" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
+              <a class="post-gallery-img fancybox" href="https://i.loli.net/2018/11/08/5be30dda9732b.png" rel="gallery_cjo9m39ek0007t9wzsfvky9h2" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://i.loli.net/2018/11/08/5be30dda9732b.png" itemprop="contentUrl">
               </a>
             
@@ -373,11 +395,11 @@
 <p><strong>3.类和对象的区别<br>1).类是抽象的，概念的，代表一类事物<br>2).对象是具体的实际的，代表具体某一事物<br>3).类是对象的模板，对象是类的一个个个体，实例</strong></p>
 <p><strong>4.如何定义一个类<br>package包名；<br>class 类名 extends 父类 implements<br>接口名<br>{<br>    成员变量；<br>    构造方法；<br>    成员方法；<br>}</strong></p>
 <p><strong>5.<br>class 类名{<br>    成员变量;<br>}</strong></p>
-<p><strong>6.如何创建对象<br>1.1).先声明再创建<br>1.2).对象声明：类名 对象名<br>1.3).对象创建：对象名 = new 类名（）<br>2.一步到位：类名 对象名 = new 类名（）<br>3.访问对象的成员变量：对象名.变量名</strong></p>
+<p><strong>6.如何创建对象<br>1.1).先声明再创建<br>1.2).对象声明：类名 对象名<br>1.3).对象创建：对象名 = new 类名（）<br>2.一步到位：类名 对象名 = new 类名（）<br>3.访问对象的成员变量：对象名.变量名</strong><br><img src="https://i.loli.net/2018/11/09/5be52001b0adf.png" alt="0571F0B6AD22098EB664386A2BD42C9A.png"></p>
+<p><img src="https://i.loli.net/2018/11/09/5be52065efe79.png" alt="97B3F7E5FAA344BDB84142A767FD0909.png"></p>
 <p><strong>7.<br>public 返回数据类型 方法名（参数列表）<br>{<br>    语句；//方法（函数）主体<br>}</strong></p>
 <p><strong>8.如何定名字：<br>驼峰法（匈牙利）<br>myCry<br>下划线法my_cry</strong></p>
-<p><strong>9.<br>Person person = new Person();//创建对象<br>person.speak();//调用speak方法<br>class Person//定义一个类<br>{<br> public void speak()//speak方法//方法重载的概念<br>    {<br>        System.out.println(“sb”);<br>    }<br>}</strong></p>
-<p><strong>10.类成员方法的声明<br>public(访问修饰符) int(数据类型) test(方法名/函数名) (int a//参数列表);<br>return 表达式;(void不需要返回)</strong></p>
+<p><strong>9.<br>Person person = new Person();//创建对象<br>person.speak();//调用speak方法<br>class Person//定义一个类<br>{<br> public void speak()//speak方法//方法重载的概念<br>    {<br>        System.out.println(“sb”);<br>    }<br>}</strong><br><img src="https://i.loli.net/2018/11/09/5be520aa1ba62.png" alt="20EC6494FB209266F9058A1918BD870E.png"><br><strong>10.类成员方法的声明<br>public(访问修饰符) int(数据类型) test(方法名/函数名) (int a//参数列表);<br>return 表达式;(void不需要返回)</strong></p>
 <p><strong>11.构造方法是类的一种特殊方法。<br>作用：完成对新对象的初始化<br>特点:<br>1.方法名与类名相同<br>2.没有返回值<br>3.创建一个类的新对象的时候，系统会自动调用该类的构造方法完成对新对象的初始化<br>4.一个类可以有多个构造方法<br>5.每个类都有个默认构造方法<br>主要用处：初始化你的成员变量</strong></p>
 <p><strong>今日代码：</strong><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Java_1106_1</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String args[]</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        Cat cat1 = <span class="keyword">new</span> Cat();<span class="comment">//第一只猫</span></span><br><span class="line">        cat1.age = <span class="number">13</span>;</span><br><span class="line">        cat1.color = <span class="string">"yellow"</span>;</span><br><span class="line">        cat1.name = <span class="string">"sb"</span>;</span><br><span class="line">        Cat cat2 = <span class="keyword">new</span> Cat();<span class="comment">//创建第二只猫</span></span><br><span class="line">        cat2.name = <span class="string">"li"</span>;</span><br><span class="line">        Person person1 = <span class="keyword">new</span> Person(<span class="number">11</span>);</span><br><span class="line">        person1.speak();<span class="comment">//调用speak方法</span></span><br><span class="line">        person1.count(<span class="number">100</span>);<span class="comment">//调用可以传入计算的方法</span></span><br><span class="line">        person1.<span class="keyword">add</span>(<span class="number">10</span>,<span class="number">20</span>);</span><br><span class="line">        System.<span class="keyword">out</span>.println(person1.add1(<span class="number">29</span>,<span class="number">20</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Cat</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//下面为类的成员变量/属性</span></span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    String name;</span><br><span class="line">    String color;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title">Person</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span>(<span class="params"><span class="keyword">int</span> age</span>)  <span class="comment">//构造方法（可以定义多个在同一个类里）</span></span></span><br><span class="line"><span class="function">    <span class="comment">//没有构造的时候使用默认 public Person()&#123;&#125;</span></span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        age = age;</span><br><span class="line">        System.<span class="keyword">out</span>.println(age);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">speak</span>(<span class="params"></span>)<span class="comment">//speak方法//方法重载的概念</span></span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"sb"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">count</span>(<span class="params"><span class="keyword">int</span> n</span>)<span class="comment">//计算方法</span></span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;<span class="comment">//sum的作用域在此方法中</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"计算结果是"</span>+sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span>(<span class="params"><span class="keyword">int</span> a, <span class="keyword">int</span> b</span>)<span class="comment">//两个变量的方法</span></span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = a + b;</span><br><span class="line">        System.<span class="keyword">out</span>.println(sum);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add1</span>(<span class="params"><span class="keyword">int</span> a,<span class="keyword">int</span> b</span>)<span class="comment">//计算两个数的和，并把结果返回给他的函数</span></span></span><br><span class="line"><span class="function"></span>    &#123;                           <span class="comment">//注意：返回类型要和返回结果一样</span></span><br><span class="line">    <span class="comment">//调用某个成员方法时，数值个数要相同，并且类型要匹配</span></span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
@@ -515,6 +537,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
             
 
             
