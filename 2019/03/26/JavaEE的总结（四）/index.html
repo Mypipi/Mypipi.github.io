@@ -95,10 +95,14 @@
 <meta property="og:site_name" content="CYP | Blog">
 <meta property="og:description" content="Welcome to read">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-28T15:25:29.632Z">
+<meta property="og:image" content="https://i.loli.net/2019/03/30/5c9f85dc42fe0.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/30/5c9f865a258b6.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/30/5c9f8676c634b.png">
+<meta property="og:updated_time" content="2019-03-30T15:08:53.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaEE的总结（四）">
 <meta name="twitter:description" content="Welcome to read">
+<meta name="twitter:image" content="https://i.loli.net/2019/03/30/5c9f85dc42fe0.png">
 
 
 
@@ -367,12 +371,11 @@
       
 
       
-        <h2 id="关于JavaEE的复习总结（四）"><a href="#关于JavaEE的复习总结（四）" class="headerlink" title="关于JavaEE的复习总结（四）"></a>关于JavaEE的复习总结（四）</h2><h3 id="1-一维数组"><a href="#1-一维数组" class="headerlink" title="1.一维数组"></a>1.一维数组</h3><p>①数组定义：<br>数据类型[] 变量名 = new 数据类型[存储元素个数]<br>eg:int[] arr = new int[3];<br>一般用int[] arr = {}定义<br>②数组的方法：<br>1）length：取得数组长度(区分字符串length())<br>③数组操作中的两个异常：<br>1）ArrayIndexOutOfBoundException数组索引越界异常，索引过大或者为负数造成<br>2）NullPointException空指针异常<br>④数组的内存图</p>
-<p>注意：数组中只能存同一种数据类型 变量名 = null，导致所存的地址丢失无法操作数组。</p>
+        <h2 id="关于JavaEE的复习总结（四）"><a href="#关于JavaEE的复习总结（四）" class="headerlink" title="关于JavaEE的复习总结（四）"></a>关于JavaEE的复习总结（四）</h2><h3 id="1-一维数组"><a href="#1-一维数组" class="headerlink" title="1.一维数组"></a>1.一维数组</h3><p>①数组定义：<br>数据类型[] 变量名 = new 数据类型[存储元素个数]<br>eg:int[] arr = new int[3];<br>一般用int[] arr = {}定义<br>②数组的方法：<br>1）length：取得数组长度(区分字符串length())<br>③数组操作中的两个异常：<br>1）ArrayIndexOutOfBoundException数组索引越界异常，索引过大或者为负数造成<br>2）NullPointException空指针异常<br>④数组的内存图<br><img src="https://i.loli.net/2019/03/30/5c9f85dc42fe0.png" alt="FBEF8415B392FACBB7EBFB459DBC55A9.png"><br>注意：数组中只能存同一种数据类型 变量名 = null，导致所存的地址丢失无法操作数组。</p>
 <h3 id="2-二维数组"><a href="#2-二维数组" class="headerlink" title="2.二维数组"></a>2.二维数组</h3><p>①定义格式：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int [<span class="string"></span>][<span class="symbol"></span>] arr = new int[<span class="string">3</span>][<span class="symbol">4</span>];</span><br><span class="line">int [<span class="string"></span>][<span class="symbol"></span>] arr = new int[<span class="string">1</span>][<span class="symbol"></span>];</span><br><span class="line">arr [0] = new int[4];</span><br><span class="line">arr [1] = new int[4];</span><br><span class="line">int [][] arr = &#123;&#123;&#125;,&#123;&#125;&#125;(建议使用)</span><br></pre></td></tr></table></figure></p>
+<p>②内存图<br><img src="https://i.loli.net/2019/03/30/5c9f865a258b6.png" alt="2A5B4DDFA60A43178E361C47D5BEE907.png"></p>
 <h3 id="3-内存"><a href="#3-内存" class="headerlink" title="3.内存"></a>3.内存</h3><p>①内存由操作系统管理，JVM只是向系统拿内存。<br>②拿到内存后，JVM自己分配内存：<br>1）寄存器，位于内存与cpu之间<br>2）本地方法栈：JVM调用本地功能<br>3）方法和数据共享区：运行时，*.class进入的地方<br>4）方法栈：所有方法运行时进的内存<br>5）堆：存的是容器和对象</p>
-<h3 id="4-方法"><a href="#4-方法" class="headerlink" title="4.方法"></a>4.方法</h3><p>①定义格式：<br>修饰符 返回值类型 方法名(参数列表){<br>功能主体<br>return；<br>}<br>1)返回值类型：方法运算后，结果的数据类型<br>2)方法名：第一个单词的代码小写之后每一个字母的首字母大写<br>3)return：方法的返回，返回计算结果与返回值同类型<br>4)参数列表：方法中的参数变量都是都是形参，没有具体的数值，只有调用时才会赋值，所赋的值称实参。<br>②方法调用内存图</p>
-<p>③方法的定义和注意事项<br>1)方法不能定义在另一个方法里<br>2)调用方法时方法名不能写错<br>3)调用方法时参数列表不能写错<br>4)方法中返回值为void，return可以省略不写，或者直接return；因为return是结束方法所以return后面不能有代码存在，即使存在也不执行<br>5)方法返回值类型</p>
+<h3 id="4-方法"><a href="#4-方法" class="headerlink" title="4.方法"></a>4.方法</h3><p>①定义格式：<br>修饰符 返回值类型 方法名(参数列表){<br>功能主体<br>return；<br>}<br>1)返回值类型：方法运算后，结果的数据类型<br>2)方法名：第一个单词的代码小写之后每一个字母的首字母大写<br>3)return：方法的返回，返回计算结果与返回值同类型<br>4)参数列表：方法中的参数变量都是都是形参，没有具体的数值，只有调用时才会赋值，所赋的值称实参。<br>②方法调用内存图<br><img src="https://i.loli.net/2019/03/30/5c9f8676c634b.png" alt="504334F00CCBB124FA94DE81991FE241.png"><br>③方法的定义和注意事项<br>1)方法不能定义在另一个方法里<br>2)调用方法时方法名不能写错<br>3)调用方法时参数列表不能写错<br>4)方法中返回值为void，return可以省略不写，或者直接return；因为return是结束方法所以return后面不能有代码存在，即使存在也不执行<br>5)方法返回值类型</p>
 
       
     </div>
@@ -416,6 +419,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/30/JavaEE总结（五）/" rel="prev" title="JavaEE总结（五）">
+                JavaEE总结（五） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -496,7 +503,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
