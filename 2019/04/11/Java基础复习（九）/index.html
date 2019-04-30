@@ -1,1 +1,887 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="CYP, Blog"><meta name="description" content="关于Java基础复习（九）1.this关键字①区分成员变量和局部变量同名②方法中，方法成员变量写this③当成员变量和局部变量重名时，且没有this，用就近原则。④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同⑤this的内存图 2.继承①子类自动拥有父类所有可继承的属性和方法好处：1）提高了代码的复用性，提高软件开发效率。2）继承让类与类之间有了关系，提供了多态的前提。②j"><meta property="og:type" content="article"><meta property="og:title" content="Java基础复习（九）"><meta property="og:url" content="http://ypeng.xyz/2019/04/11/Java基础复习（九）/index.html"><meta property="og:site_name" content="CYP | Blog"><meta property="og:description" content="关于Java基础复习（九）1.this关键字①区分成员变量和局部变量同名②方法中，方法成员变量写this③当成员变量和局部变量重名时，且没有this，用就近原则。④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同⑤this的内存图 2.继承①子类自动拥有父类所有可继承的属性和方法好处：1）提高了代码的复用性，提高软件开发效率。2）继承让类与类之间有了关系，提供了多态的前提。②j"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2019-04-24T12:23:28.078Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Java基础复习（九）"><meta name="twitter:description" content="关于Java基础复习（九）1.this关键字①区分成员变量和局部变量同名②方法中，方法成员变量写this③当成员变量和局部变量重名时，且没有this，用就近原则。④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同⑤this的内存图 2.继承①子类自动拥有父类所有可继承的属性和方法好处：1）提高了代码的复用性，提高软件开发效率。2）继承让类与类之间有了关系，提供了多态的前提。②j"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!0,onmobile:!0},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://ypeng.xyz/2019/04/11/Java基础复习（九）/"><title>Java基础复习（九） | CYP | Blog</title></head><body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">CYP | Blog</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">This is a small snake!</p></div><div class="site-nav-toggle"> <button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br> 首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br> 关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br> 标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br> 分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br> 归档</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://ypeng.xyz/2019/04/11/Java基础复习（九）/"><span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="name" content="CYP"><meta itemprop="description" content=""><meta itemprop="image" content="https://i.postimg.cc/gJv9Df15/favicon.jpg"></span><span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"><meta itemprop="name" content="CYP | Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Java基础复习（九）</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T23:33:07+08:00">2019-04-11</time></span> <span class="post-category"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><h2 id="关于Java基础复习（九）"><a href="#关于Java基础复习（九）" class="headerlink" title="关于Java基础复习（九）"></a>关于Java基础复习（九）</h2><h3 id="1-this关键字"><a href="#1-this关键字" class="headerlink" title="1.this关键字"></a>1.this关键字</h3><p>①区分成员变量和局部变量同名<br>②方法中，方法成员变量写this<br>③当成员变量和局部变量重名时，且没有this，用就近原则。<br>④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同<br>⑤this的内存图</p><h3 id="2-继承"><a href="#2-继承" class="headerlink" title="2.继承"></a>2.继承</h3><p>①子类自动拥有父类所有可继承的属性和方法<br>好处：<br>1）提高了代码的复用性，提高软件开发效率。<br>2）继承让类与类之间有了关系，提供了多态的前提。<br>②java中只支持单继承不支持多继承，一个类只能有一个父类。<br>③多个类可以继承自一个类。<br>④java支持多层继承，多重继承。<br>⑤子类父类只是相对概念。<br>⑥子类的对象调用成员变量，子类自己有使用自己的，子类自己没有，找父类的，就近原则。<br>⑦当子类出现了同名成员时，要访问父类成员用super来调用父类成员。父类又叫超类，基类。子类又叫派生类。</p><h3 id="3-方法重写（override）"><a href="#3-方法重写（override）" class="headerlink" title="3.方法重写（override）"></a>3.方法重写（override）</h3><p>①子类中，出现了父类一模一样的方法时，包括返回值，参数列表，变量名，子类重写父类的方法。（覆盖）<br>②子类重写父类方法的时候，权限要大于等于父类。</p><h3 id="4-Java权限修饰符"><a href="#4-Java权限修饰符" class="headerlink" title="4.Java权限修饰符"></a>4.Java权限修饰符</h3><p>public &gt; protected &gt; default(不写） &gt; private<br>无法共存的修饰符<br>abstract private 私有的没有办法继承<br>abstract final<br>abstract static</p><h3 id="5-抽象类abstract"><a href="#5-抽象类abstract" class="headerlink" title="5.抽象类abstract"></a>5.抽象类abstract</h3><p>①抽象方法没有主体，必须用abstract修饰。<br>②抽象方法必须用存在于抽象类中，而抽象类中可以没有抽象方法，抽象类也必须用abstract修饰。<br>③抽象类不能实例化对象，也就是不能new一个对象。<br>原因：即使有了实例化对象方法没有主体，当调用方法时也是没有办法运行的即抽象方法没有意义。<br>④抽象类的使用：<br>1）定义一个类继承抽象类，将抽象类中的所有方法重写。<br>2）子类必须重写抽象类的方法，否则报错。<br>3）如果一个类重写了抽象类的部分抽象方法，这个子类还是一个抽象类，还是无法实例化对象，只有重写了全部抽象方法才可以实例化对象。<br>⑤抽象类的设计思想：<br>1）作用：继承体系<br>2）抽象类强制子类重写抽象方法。<br>⑥抽象类可以有普通方法，也可以不定义抽象方法。<br>⑦抽象类一定是父类。<br>⑧不能为了继承而继承，应该满足is - a。</p><h3 id="6-接口interface"><a href="#6-接口interface" class="headerlink" title="6.接口interface"></a>6.接口interface</h3><p>一切事物皆有功能，即一切事物皆有接口！！</p><h4 id="1-接口的定义"><a href="#1-接口的定义" class="headerlink" title="1.接口的定义"></a>1.接口的定义</h4><p>①格式：<br></p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>接口名 &#123;</span><br><span class="line">抽象方法1</span><br><span class="line">抽象方法2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p><p>②成员方法都是抽象的，不能定义带有方法体的方法。<br>格式：<br></p><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span>(不可以修改，只允许<span class="keyword">public</span>) 返回值类型 方法名（参数列表）;</span><br></pre></td></tr></table></figure><p></p><p>public abstract 可以选择性写，它默认就是public，而且只能是public<br>③成员变量：<br>1）必须定义成常量。<br>2）固定格式：<br></p><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> 数据类型 变量名 = 值；</span><br></pre></td></tr></table></figure><p></p><p>注意：public static final在接口中可以不写，不过它还是存在。</p><h4 id="2-类与接口的关系"><a href="#2-类与接口的关系" class="headerlink" title="2.类与接口的关系"></a>2.类与接口的关系</h4><p>①类实现接口。<br>②定义类实现接口，重写接口中的抽象方法。<br>格式：<br></p><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类 <span class="keyword">implements</span> 接口名</span>&#123;</span><br><span class="line">	重写接口中的方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p></p><p>③接口中的抽象方法必须全部重写才能创建对象，如果只重写了一部分方法，该实现类还是一个抽象类。</p><h4 id="3-接口的多实现"><a href="#3-接口的多实现" class="headerlink" title="3.接口的多实现"></a>3.接口的多实现</h4><p>①多实现没有安全隐患，因为接口中的方法都是抽象的没有主体，依赖实现类重写才能执行，所以解决了继承的局限性。<br>②类继承一个类的同时可以实现多个接口。</p><h4 id="4-接口之间的多继承"><a href="#4-接口之间的多继承" class="headerlink" title="4.接口之间的多继承"></a>4.接口之间的多继承</h4><p>①接口与接口之间是继承关系。<br>②Java支持接口之间的多继承。<br>eg：c接口继承b，a接口，那么c的实现类要重写abc的抽象方法。</p><h4 id="5-接口的优点"><a href="#5-接口的优点" class="headerlink" title="5.接口的优点"></a>5.接口的优点</h4><p>①接口的出现扩展了功能。<br>②接口其实是暴露出来的规划。<br>③接口降低了耦合性，即设备与设备间出现了解耦。</p><h4 id="6-接口与抽象类的区别"><a href="#6-接口与抽象类的区别" class="headerlink" title="6.接口与抽象类的区别"></a>6.接口与抽象类的区别</h4><p>相同：<br>①位于继承的顶端，用于被其他类继承或实现。<br>②都不能实例化对象。<br>③抽象类（含有抽象方法）和接口，其子类（实现类）都要重写抽象方法。</p><p>异同：<br>①抽象方法中可以有普通方法，避免子类重复实现，提高了代码的复用性，接口中只能是抽象方法。<br>②抽象类的继承体系是is-a关系。<br>③接口的体系是like-a关系。</p><p>使用：优先使用接口少用抽象类，除非要有关系才使用抽象类。</p></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2019/04/07/Java基础复习（八）/" rel="next" title="Java基础复习（八）"><i class="fa fa-chevron-left"></i> Java基础复习（八）</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"> <a href="/2019/04/14/Java基础复习（十）/" rel="prev" title="Java基础复习（十）">Java基础复习（十）<i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div id="sidebar-dimmer"></div><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap"> 站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="https://i.postimg.cc/gJv9Df15/favicon.jpg" alt="CYP"><p class="site-author-name" itemprop="name">CYP</p><p class="site-description motion-element" itemprop="description">To be better!</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">24</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <span class="site-state-item-count">7</span> <span class="site-state-item-name">分类</span></div><div class="site-state-item site-state-tags"> <span class="site-state-item-count">5</span> <span class="site-state-item-name">标签</span></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Mypipi" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:277832294@Qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-block"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"> <a href="http://pigman.xyz/" title="Pigman" target="_blank">Pigman</a></li></ul></div><div id="player1" class="aplayer"></div><script src="/js/src/APlayer.min.js"></script><script type="text/javascript">var ap=new APlayer({element:document.getElementById("player1"),narrow:!1,autoplay:!1,showlrc:0,mutex:!0,theme:"#e6d0b2",mode:"random",preload:"metadata",listmaxheight:"513px",music:{title:"Numb",author:"Linkin-park",url:"https://music.163.com/song/media/outer/url?id=4153366.mp3",pic:"/images/visitor.jpg"}})</script></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Java基础复习（九）"><span class="nav-number">1.</span> <span class="nav-text">关于Java基础复习（九）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-this关键字"><span class="nav-number">1.1.</span> <span class="nav-text">1.this关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-继承"><span class="nav-number">1.2.</span> <span class="nav-text">2.继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-方法重写（override）"><span class="nav-number">1.3.</span> <span class="nav-text">3.方法重写（override）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Java权限修饰符"><span class="nav-number">1.4.</span> <span class="nav-text">4.Java权限修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-抽象类abstract"><span class="nav-number">1.5.</span> <span class="nav-text">5.抽象类abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-接口interface"><span class="nav-number">1.6.</span> <span class="nav-text">6.接口interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-接口的定义"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.接口的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-类与接口的关系"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.类与接口的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-接口的多实现"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.接口的多实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-接口之间的多继承"><span class="nav-number">1.6.4.</span> <span class="nav-text">4.接口之间的多继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-接口的优点"><span class="nav-number">1.6.5.</span> <span class="nav-text">5.接口的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-接口与抽象类的区别"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.接口与抽象类的区别</span></a></li></ol></li></ol></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><link rel="stylesheet" href="/live2d/css/live2d.css"><div id="landlord"><div class="message" style="opacity:0"></div><canvas id="live2d" width="200" height="300" class="live2d"></canvas><div class="hide-button">隐藏</div></div><script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script><script type="text/javascript">var message_Path="/live2d/",home_Path="https://Mypipi.github.io/"</script><script type="text/javascript" src="/live2d/js/live2d.js"></script><script type="text/javascript" src="/live2d/js/message.js"></script><script type="text/javascript">loadlive2d("live2d","/live2d/assets/koharu.model.json")</script><div class="footer-inner"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">CYP</span></div><div class="powered-by"><i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv">本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://Mypipi.github.io">CYP</a> 提供支持</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script type="text/javascript">var a_idx=0;jQuery(document).ready(function(i){i("body").click(function(a){var e=new Array("富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善"),o=i("<span/>").text(e[a_idx]);a_idx=(a_idx+1)%e.length;var t=a.pageX,n=a.pageY;o.css({"z-index":1e69,top:n-20,left:t,position:"absolute","font-weight":"bold",color:"#ff6651"}),i("body").append(o),o.animate({top:n-180,opacity:0},1500,function(){o.remove()})})})</script></body></html>
+<!DOCTYPE html>
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CYP, Blog">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="关于Java基础复习（九）1.this关键字①区分成员变量和局部变量同名②方法中，方法成员变量写this③当成员变量和局部变量重名时，且没有this，用就近原则。④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同⑤this的内存图 2.继承①子类自动拥有父类所有可继承的属性和方法好处：1）提高了代码的复用性，提高软件开发效率。2）继承让类与类之间有了关系，提供了多态的前提。②j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础复习（九）">
+<meta property="og:url" content="http://ypeng.xyz/2019/04/11/Java基础复习（九）/index.html">
+<meta property="og:site_name" content="CYP | Blog">
+<meta property="og:description" content="关于Java基础复习（九）1.this关键字①区分成员变量和局部变量同名②方法中，方法成员变量写this③当成员变量和局部变量重名时，且没有this，用就近原则。④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同⑤this的内存图 2.继承①子类自动拥有父类所有可继承的属性和方法好处：1）提高了代码的复用性，提高软件开发效率。2）继承让类与类之间有了关系，提供了多态的前提。②j">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-24T12:23:28.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java基础复习（九）">
+<meta name="twitter:description" content="关于Java基础复习（九）1.this关键字①区分成员变量和局部变量同名②方法中，方法成员变量写this③当成员变量和局部变量重名时，且没有this，用就近原则。④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同⑤this的内存图 2.继承①子类自动拥有父类所有可继承的属性和方法好处：1）提高了代码的复用性，提高软件开发效率。2）继承让类与类之间有了关系，提供了多态的前提。②j">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ypeng.xyz/2019/04/11/Java基础复习（九）/">
+
+
+
+
+
+  <title>Java基础复习（九） | CYP | Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CYP | Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">This is a small snake!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+
+
+    
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ypeng.xyz/2019/04/11/Java基础复习（九）/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CYP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.postimg.cc/gJv9Df15/favicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CYP | Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java基础复习（九）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T23:33:07+08:00">
+                2019-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="关于Java基础复习（九）"><a href="#关于Java基础复习（九）" class="headerlink" title="关于Java基础复习（九）"></a>关于Java基础复习（九）</h2><h3 id="1-this关键字"><a href="#1-this关键字" class="headerlink" title="1.this关键字"></a>1.this关键字</h3><p>①区分成员变量和局部变量同名<br>②方法中，方法成员变量写this<br>③当成员变量和局部变量重名时，且没有this，用就近原则。<br>④当某个对象调用方法时，this就是表示哪个对象，其地址与对象地址相同<br>⑤this的内存图</p>
+<h3 id="2-继承"><a href="#2-继承" class="headerlink" title="2.继承"></a>2.继承</h3><p>①子类自动拥有父类所有可继承的属性和方法<br>好处：<br>1）提高了代码的复用性，提高软件开发效率。<br>2）继承让类与类之间有了关系，提供了多态的前提。<br>②java中只支持单继承不支持多继承，一个类只能有一个父类。<br>③多个类可以继承自一个类。<br>④java支持多层继承，多重继承。<br>⑤子类父类只是相对概念。<br>⑥子类的对象调用成员变量，子类自己有使用自己的，子类自己没有，找父类的，就近原则。<br>⑦当子类出现了同名成员时，要访问父类成员用super来调用父类成员。父类又叫超类，基类。子类又叫派生类。</p>
+<h3 id="3-方法重写（override）"><a href="#3-方法重写（override）" class="headerlink" title="3.方法重写（override）"></a>3.方法重写（override）</h3><p>①子类中，出现了父类一模一样的方法时，包括返回值，参数列表，变量名，子类重写父类的方法。（覆盖）<br>②子类重写父类方法的时候，权限要大于等于父类。</p>
+<h3 id="4-Java权限修饰符"><a href="#4-Java权限修饰符" class="headerlink" title="4.Java权限修饰符"></a>4.Java权限修饰符</h3><p>public &gt; protected &gt; default(不写） &gt; private<br>无法共存的修饰符<br>abstract private 私有的没有办法继承<br>abstract final<br>abstract static</p>
+<h3 id="5-抽象类abstract"><a href="#5-抽象类abstract" class="headerlink" title="5.抽象类abstract"></a>5.抽象类abstract</h3><p>①抽象方法没有主体，必须用abstract修饰。<br>②抽象方法必须用存在于抽象类中，而抽象类中可以没有抽象方法，抽象类也必须用abstract修饰。<br>③抽象类不能实例化对象，也就是不能new一个对象。<br>原因：即使有了实例化对象方法没有主体，当调用方法时也是没有办法运行的即抽象方法没有意义。<br>④抽象类的使用：<br>1）定义一个类继承抽象类，将抽象类中的所有方法重写。<br>2）子类必须重写抽象类的方法，否则报错。<br>3）如果一个类重写了抽象类的部分抽象方法，这个子类还是一个抽象类，还是无法实例化对象，只有重写了全部抽象方法才可以实例化对象。<br>⑤抽象类的设计思想：<br>1）作用：继承体系<br>2）抽象类强制子类重写抽象方法。<br>⑥抽象类可以有普通方法，也可以不定义抽象方法。<br>⑦抽象类一定是父类。<br>⑧不能为了继承而继承，应该满足is - a。</p>
+<h3 id="6-接口interface"><a href="#6-接口interface" class="headerlink" title="6.接口interface"></a>6.接口interface</h3><p>一切事物皆有功能，即一切事物皆有接口！！</p>
+<h4 id="1-接口的定义"><a href="#1-接口的定义" class="headerlink" title="1.接口的定义"></a>1.接口的定义</h4><p>①格式：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public<span class="built_in"> interface </span>接口名 &#123;</span><br><span class="line">抽象方法1</span><br><span class="line">抽象方法2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>②成员方法都是抽象的，不能定义带有方法体的方法。<br>格式：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span>(不可以修改，只允许<span class="keyword">public</span>) 返回值类型 方法名（参数列表）;</span><br></pre></td></tr></table></figure></p>
+<p>public abstract 可以选择性写，它默认就是public，而且只能是public<br>③成员变量：<br>1）必须定义成常量。<br>2）固定格式：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> 数据类型 变量名 = 值；</span><br></pre></td></tr></table></figure></p>
+<p>注意：public static final在接口中可以不写，不过它还是存在。</p>
+<h4 id="2-类与接口的关系"><a href="#2-类与接口的关系" class="headerlink" title="2.类与接口的关系"></a>2.类与接口的关系</h4><p>①类实现接口。<br>②定义类实现接口，重写接口中的抽象方法。<br>格式：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类 <span class="keyword">implements</span> 接口名</span>&#123;</span><br><span class="line">	重写接口中的方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>③接口中的抽象方法必须全部重写才能创建对象，如果只重写了一部分方法，该实现类还是一个抽象类。</p>
+<h4 id="3-接口的多实现"><a href="#3-接口的多实现" class="headerlink" title="3.接口的多实现"></a>3.接口的多实现</h4><p>①多实现没有安全隐患，因为接口中的方法都是抽象的没有主体，依赖实现类重写才能执行，所以解决了继承的局限性。<br>②类继承一个类的同时可以实现多个接口。</p>
+<h4 id="4-接口之间的多继承"><a href="#4-接口之间的多继承" class="headerlink" title="4.接口之间的多继承"></a>4.接口之间的多继承</h4><p>①接口与接口之间是继承关系。<br>②Java支持接口之间的多继承。<br>eg：c接口继承b，a接口，那么c的实现类要重写abc的抽象方法。</p>
+<h4 id="5-接口的优点"><a href="#5-接口的优点" class="headerlink" title="5.接口的优点"></a>5.接口的优点</h4><p>①接口的出现扩展了功能。<br>②接口其实是暴露出来的规划。<br>③接口降低了耦合性，即设备与设备间出现了解耦。</p>
+<h4 id="6-接口与抽象类的区别"><a href="#6-接口与抽象类的区别" class="headerlink" title="6.接口与抽象类的区别"></a>6.接口与抽象类的区别</h4><p>相同：<br>①位于继承的顶端，用于被其他类继承或实现。<br>②都不能实例化对象。<br>③抽象类（含有抽象方法）和接口，其子类（实现类）都要重写抽象方法。</p>
+<p>异同：<br>①抽象方法中可以有普通方法，避免子类重复实现，提高了代码的复用性，接口中只能是抽象方法。<br>②抽象类的继承体系是is-a关系。<br>③接口的体系是like-a关系。</p>
+<p>使用：优先使用接口少用抽象类，除非要有关系才使用抽象类。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/07/Java基础复习（八）/" rel="next" title="Java基础复习（八）">
+                <i class="fa fa-chevron-left"></i> Java基础复习（八）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/14/Java基础复习（十）/" rel="prev" title="Java基础复习（十）">
+                Java基础复习（十） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.postimg.cc/gJv9Df15/favicon.jpg" alt="CYP">
+            
+              <p class="site-author-name" itemprop="name">CYP</p>
+              <p class="site-description motion-element" itemprop="description">To be better!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mypipi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:277832294@Qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://pigman.xyz/" title="Pigman" target="_blank">Pigman</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <div id="player1" class="aplayer"></div>
+<script src="/js/src/APlayer.min.js"></script>
+<script type="text/javascript">
+var ap = new APlayer({
+    element: document.getElementById('player1'),                       // Optional, player element
+    narrow: false,                                                     // Optional, narrow style
+    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    mutex: true,                                                       // Optional, pause other players when this player playing
+    theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
+    mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
+    preload: 'metadata',                                               // Optional, the way to load music, can be 'none' 'metadata' 'auto', default: 'auto'
+    listmaxheight: '513px',                                             // Optional, max height of play list
+    music: {                                                           // Required, music info, see: ###With playlist
+        title: 'Numb',                                          // Required, music title
+        author: 'Linkin-park',                                              // Required, music author
+        url: 'https://music.163.com/song/media/outer/url?id=4153366.mp3',                // Required, music url
+        pic: '/images/visitor.jpg',                                   // Optional, music picture
+    }
+});
+</script>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Java基础复习（九）"><span class="nav-number">1.</span> <span class="nav-text">关于Java基础复习（九）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-this关键字"><span class="nav-number">1.1.</span> <span class="nav-text">1.this关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-继承"><span class="nav-number">1.2.</span> <span class="nav-text">2.继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-方法重写（override）"><span class="nav-number">1.3.</span> <span class="nav-text">3.方法重写（override）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Java权限修饰符"><span class="nav-number">1.4.</span> <span class="nav-text">4.Java权限修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-抽象类abstract"><span class="nav-number">1.5.</span> <span class="nav-text">5.抽象类abstract</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-接口interface"><span class="nav-number">1.6.</span> <span class="nav-text">6.接口interface</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-接口的定义"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.接口的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-类与接口的关系"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.类与接口的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-接口的多实现"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.接口的多实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-接口之间的多继承"><span class="nav-number">1.6.4.</span> <span class="nav-text">4.接口之间的多继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-接口的优点"><span class="nav-number">1.6.5.</span> <span class="nav-text">5.接口的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-接口与抽象类的区别"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.接口与抽象类的区别</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+
+     <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="200" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://Mypipi.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CYP</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://Mypipi.github.io">CYP</a> 提供支持</div>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <script type="text/javascript">
+/* 鼠标特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+   $("body").click(function(e) {
+       var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善");
+       var $i = $("<span/>").text(a[a_idx]);
+       a_idx = (a_idx + 1) % a.length;
+       var x = e.pageX,
+       y = e.pageY;
+       $i.css({
+           "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+           "top": y - 20,
+           "left": x,
+           "position": "absolute",
+           "font-weight": "bold",
+           "color": "#ff6651"
+       });
+       $("body").append($i);
+       $i.animate({
+           "top": y - 180,
+           "opacity": 0
+       },
+       1500,
+       function() {
+           $i.remove();
+       });
+   });
+});
+    </script>
+
+  
+</body>
+</html>

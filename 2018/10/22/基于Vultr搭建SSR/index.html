@@ -1,1 +1,912 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="cool,SSR,"><meta name="description" content="Welcome to read"><meta name="keywords" content="cool,SSR"><meta property="og:type" content="article"><meta property="og:title" content="基于Vultr搭建SSR"><meta property="og:url" content="http://ypeng.xyz/2018/10/22/基于Vultr搭建SSR/index.html"><meta property="og:site_name" content="CYP | Blog"><meta property="og:description" content="Welcome to read"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2019-04-07T13:21:30.147Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="基于Vultr搭建SSR"><meta name="twitter:description" content="Welcome to read"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!0,onmobile:!0},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://ypeng.xyz/2018/10/22/基于Vultr搭建SSR/"><title>基于Vultr搭建SSR | CYP | Blog</title></head><body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">CYP | Blog</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">This is a small snake!</p></div><div class="site-nav-toggle"> <button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br> 首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br> 关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br> 标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br> 分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br> 归档</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://ypeng.xyz/2018/10/22/基于Vultr搭建SSR/"><span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="name" content="CYP"><meta itemprop="description" content=""><meta itemprop="image" content="https://i.postimg.cc/gJv9Df15/favicon.jpg"></span><span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"><meta itemprop="name" content="CYP | Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">基于Vultr搭建SSR</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T11:23:00+08:00">2018-10-22</time></span> <span class="post-category"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/ssr/" itemprop="url" rel="index"><span itemprop="name">ssr</span></a></span></span><div class="post-description"> Welcome to read</div></div></header><div class="post-body" itemprop="articleBody"><h3 id="服务器搭建SSR的流程与步骤"><a href="#服务器搭建SSR的流程与步骤" class="headerlink" title="服务器搭建SSR的流程与步骤"></a><strong>服务器搭建SSR的流程与步骤</strong><a id="more"></a></h3><h2 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h2><blockquote><p><strong>服务器有很多，不同的配置对应不同的价格。本人学生党觉得Vultr和搬瓦工这两个比较实惠，而且它们支持支付宝付款。</strong></p></blockquote><h2 id="服务器的基本配置"><a href="#服务器的基本配置" class="headerlink" title="服务器的基本配置"></a>服务器的基本配置</h2><blockquote><p><strong>本人自用的是Vultr，因为它活动多有充10刀送25刀的活动（笑）</strong><br><strong>第一步你需要开一台服务器，根据个人的经济 能力进行配置，由于本人学生狗，经济不足只能开5刀Vultr了.服务器系统一般选择centos6 x64或centos7 x64。不知道是不是我自己的原因用过一阵子centos7，它会突然抽风，不过重启一下服务器又可以了。</strong></p></blockquote><blockquote><p><strong>开完服务器的第一件事，开启你的命令行ping一下你服务器的ip地址开是否ping得通，如果可以ping通那么恭喜你可以继续下一步，如果ping不通，请重新开一个服务器。</strong></p></blockquote><h2 id="安装Shadowsocks-服务器端"><a href="#安装Shadowsocks-服务器端" class="headerlink" title="安装Shadowsocks 服务器端"></a>安装Shadowsocks 服务器端</h2><blockquote><p><strong>首先我们需要登陆到我们的服务器端，Windows平台可以用xshell，进行相关配置就可以登陆。</strong><br><strong>Macos可以直接用终端进行登陆具体命令是ssh root@你的ip 然后回车，输入服务器密码。</strong><br><strong>ps：这里的密码是密文，可以直接从购买平台复制粘贴即可。之后在终端输入</strong></p></blockquote><blockquote><p><strong>shadowsocks安装命令</strong><br></p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget –<span class="keyword">no</span>-check-certificate -O shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span> http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/teddysun/shadowsocks_install/master/shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span></span><br><span class="line">./shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee shadowsocks-<span class="keyword">all</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure><p></p></blockquote><blockquote><p><strong>执行命令之后设置自己SSR的登陆密码，接下去一次是ss端口设置和加密设置。不懂得直接回车即可。</strong></p></blockquote><h2 id="安装TCP加速软件"><a href="#安装TCP加速软件" class="headerlink" title="安装TCP加速软件"></a>安装TCP加速软件</h2><blockquote><p><strong>因为配置完毕后SSR的速度可能较慢这时候我们就需要一个加速器来加速这里推荐锐速。</strong><br><strong>centos6锐速的安装命令</strong><br></p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O appex<span class="selector-class">.sh</span> </span><br><span class="line">https:<span class="comment">//raw.githubusercontent.com/0oVicero0/</span></span><br><span class="line">serverSpeeder_Install/master/appex<span class="selector-class">.sh</span> &amp;&amp; bash</span><br><span class="line"> appex<span class="selector-class">.sh</span> install <span class="string">'2.6.32-642.el6.x86_64'</span></span><br></pre></td></tr></table></figure><p></p></blockquote><blockquote><p><strong>centos7锐速的安装命令</strong><br></p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate -O rskernel.<span class="keyword">sh</span> </span><br><span class="line">http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/uxh/shadowsocks_bash</span><br><span class="line">/master/rskernel.<span class="keyword">sh</span> &amp;&amp; bash rskernel.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure><p></p></blockquote><blockquote><p><strong>BBR的安装命令centos6/7通用</strong><br></p><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> wget</span><br><span class="line">wget –<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//github.<span class="keyword">com</span>/teddysun/across/raw/master/bbr.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> bbr.<span class="keyword">sh</span></span><br><span class="line">./bbr.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure><p></p></blockquote><blockquote><p><strong>各位可以根据自己的系统选择相应的安装包下载。安装完毕后如果有显示Runing就是安装成功。大功告成!</strong></p></blockquote></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/cool/" rel="tag"><i class="fa fa-tag"></i> cool</a><a href="/tags/SSR/" rel="tag"><i class="fa fa-tag"></i> SSR</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/10/11/Linux小记（一）/" rel="next" title="Linux小记（一）"><i class="fa fa-chevron-left"></i> Linux小记（一）</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"> <a href="/2018/10/24/Linux小记（二）/" rel="prev" title="Linux小记（二）">Linux小记（二）<i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div id="sidebar-dimmer"></div><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap"> 站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="https://i.postimg.cc/gJv9Df15/favicon.jpg" alt="CYP"><p class="site-author-name" itemprop="name">CYP</p><p class="site-description motion-element" itemprop="description">To be better!</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">24</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <span class="site-state-item-count">7</span> <span class="site-state-item-name">分类</span></div><div class="site-state-item site-state-tags"> <span class="site-state-item-count">5</span> <span class="site-state-item-name">标签</span></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Mypipi" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:277832294@Qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-block"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"> <a href="http://pigman.xyz/" title="Pigman" target="_blank">Pigman</a></li></ul></div><div id="player1" class="aplayer"></div><script src="/js/src/APlayer.min.js"></script><script type="text/javascript">var ap=new APlayer({element:document.getElementById("player1"),narrow:!1,autoplay:!1,showlrc:0,mutex:!0,theme:"#e6d0b2",mode:"random",preload:"metadata",listmaxheight:"513px",music:{title:"Numb",author:"Linkin-park",url:"https://music.163.com/song/media/outer/url?id=4153366.mp3",pic:"/images/visitor.jpg"}})</script></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器搭建SSR的流程与步骤"><span class="nav-number">1.</span> <span class="nav-text">服务器搭建SSR的流程与步骤</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#购买服务器"><span class="nav-number"></span> <span class="nav-text">购买服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器的基本配置"><span class="nav-number"></span> <span class="nav-text">服务器的基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Shadowsocks-服务器端"><span class="nav-number"></span> <span class="nav-text">安装Shadowsocks 服务器端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TCP加速软件"><span class="nav-number"></span> <span class="nav-text">安装TCP加速软件</span></a></li></div></div></section></div></aside></div></main><footer id="footer" class="footer"><link rel="stylesheet" href="/live2d/css/live2d.css"><div id="landlord"><div class="message" style="opacity:0"></div><canvas id="live2d" width="200" height="300" class="live2d"></canvas><div class="hide-button">隐藏</div></div><script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script><script type="text/javascript">var message_Path="/live2d/",home_Path="https://Mypipi.github.io/"</script><script type="text/javascript" src="/live2d/js/live2d.js"></script><script type="text/javascript" src="/live2d/js/message.js"></script><script type="text/javascript">loadlive2d("live2d","/live2d/assets/koharu.model.json")</script><div class="footer-inner"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">CYP</span></div><div class="powered-by"><i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv">本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://Mypipi.github.io">CYP</a> 提供支持</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script type="text/javascript">var a_idx=0;jQuery(document).ready(function(i){i("body").click(function(a){var e=new Array("富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善"),o=i("<span/>").text(e[a_idx]);a_idx=(a_idx+1)%e.length;var t=a.pageX,n=a.pageY;o.css({"z-index":1e69,top:n-20,left:t,position:"absolute","font-weight":"bold",color:"#ff6651"}),i("body").append(o),o.animate({top:n-180,opacity:0},1500,function(){o.remove()})})})</script></body></html>
+<!DOCTYPE html>
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="cool,SSR,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Welcome to read">
+<meta name="keywords" content="cool,SSR">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Vultr搭建SSR">
+<meta property="og:url" content="http://ypeng.xyz/2018/10/22/基于Vultr搭建SSR/index.html">
+<meta property="og:site_name" content="CYP | Blog">
+<meta property="og:description" content="Welcome to read">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-07T13:21:30.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于Vultr搭建SSR">
+<meta name="twitter:description" content="Welcome to read">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ypeng.xyz/2018/10/22/基于Vultr搭建SSR/">
+
+
+
+
+
+  <title>基于Vultr搭建SSR | CYP | Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CYP | Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">This is a small snake!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+
+
+    
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ypeng.xyz/2018/10/22/基于Vultr搭建SSR/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CYP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.postimg.cc/gJv9Df15/favicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CYP | Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于Vultr搭建SSR</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-22T11:23:00+08:00">
+                2018-10-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ssr/" itemprop="url" rel="index">
+                    <span itemprop="name">ssr</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  Welcome to read
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="服务器搭建SSR的流程与步骤"><a href="#服务器搭建SSR的流程与步骤" class="headerlink" title="服务器搭建SSR的流程与步骤"></a><strong>服务器搭建SSR的流程与步骤</strong><a id="more"></a></h3><h2 id="购买服务器"><a href="#购买服务器" class="headerlink" title="购买服务器"></a>购买服务器</h2><blockquote>
+<p><strong>服务器有很多，不同的配置对应不同的价格。本人学生党觉得Vultr和搬瓦工这两个比较实惠，而且它们支持支付宝付款。</strong></p>
+</blockquote>
+<h2 id="服务器的基本配置"><a href="#服务器的基本配置" class="headerlink" title="服务器的基本配置"></a>服务器的基本配置</h2><blockquote>
+<p><strong>本人自用的是Vultr，因为它活动多有充10刀送25刀的活动（笑）</strong><br><strong>第一步你需要开一台服务器，根据个人的经济 能力进行配置，由于本人学生狗，经济不足只能开5刀Vultr了.服务器系统一般选择centos6 x64或centos7 x64。不知道是不是我自己的原因用过一阵子centos7，它会突然抽风，不过重启一下服务器又可以了。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>开完服务器的第一件事，开启你的命令行ping一下你服务器的ip地址开是否ping得通，如果可以ping通那么恭喜你可以继续下一步，如果ping不通，请重新开一个服务器。</strong></p>
+</blockquote>
+<h2 id="安装Shadowsocks-服务器端"><a href="#安装Shadowsocks-服务器端" class="headerlink" title="安装Shadowsocks 服务器端"></a>安装Shadowsocks 服务器端</h2><blockquote>
+<p><strong>首先我们需要登陆到我们的服务器端，Windows平台可以用xshell，进行相关配置就可以登陆。</strong><br><strong>Macos可以直接用终端进行登陆具体命令是ssh root@你的ip 然后回车，输入服务器密码。</strong><br><strong>ps：这里的密码是密文，可以直接从购买平台复制粘贴即可。之后在终端输入</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>shadowsocks安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget –<span class="keyword">no</span>-check-certificate -O shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span> http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/teddysun/shadowsocks_install/master/shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span></span><br><span class="line">./shadowsocks-<span class="keyword">all</span>.<span class="keyword">sh</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee shadowsocks-<span class="keyword">all</span>.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>执行命令之后设置自己SSR的登陆密码，接下去一次是ss端口设置和加密设置。不懂得直接回车即可。</strong></p>
+</blockquote>
+<h2 id="安装TCP加速软件"><a href="#安装TCP加速软件" class="headerlink" title="安装TCP加速软件"></a>安装TCP加速软件</h2><blockquote>
+<p><strong>因为配置完毕后SSR的速度可能较慢这时候我们就需要一个加速器来加速这里推荐锐速。</strong><br><strong>centos6锐速的安装命令</strong><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O appex<span class="selector-class">.sh</span> </span><br><span class="line">https:<span class="comment">//raw.githubusercontent.com/0oVicero0/</span></span><br><span class="line">serverSpeeder_Install/master/appex<span class="selector-class">.sh</span> &amp;&amp; bash</span><br><span class="line"> appex<span class="selector-class">.sh</span> install <span class="string">'2.6.32-642.el6.x86_64'</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>centos7锐速的安装命令</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --<span class="keyword">no</span>-check-certificate -O rskernel.<span class="keyword">sh</span> </span><br><span class="line">http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/uxh/shadowsocks_bash</span><br><span class="line">/master/rskernel.<span class="keyword">sh</span> &amp;&amp; bash rskernel.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>BBR的安装命令centos6/7通用</strong><br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install -<span class="keyword">y</span> wget</span><br><span class="line">wget –<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//github.<span class="keyword">com</span>/teddysun/across/raw/master/bbr.<span class="keyword">sh</span></span><br><span class="line">chmod +<span class="keyword">x</span> bbr.<span class="keyword">sh</span></span><br><span class="line">./bbr.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p><strong>各位可以根据自己的系统选择相应的安装包下载。安装完毕后如果有显示Runing就是安装成功。大功告成!</strong></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cool/" rel="tag"><i class="fa fa-tag"></i> cool</a>
+          
+            <a href="/tags/SSR/" rel="tag"><i class="fa fa-tag"></i> SSR</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/11/Linux小记（一）/" rel="next" title="Linux小记（一）">
+                <i class="fa fa-chevron-left"></i> Linux小记（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/24/Linux小记（二）/" rel="prev" title="Linux小记（二）">
+                Linux小记（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.postimg.cc/gJv9Df15/favicon.jpg" alt="CYP">
+            
+              <p class="site-author-name" itemprop="name">CYP</p>
+              <p class="site-description motion-element" itemprop="description">To be better!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mypipi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:277832294@Qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://pigman.xyz/" title="Pigman" target="_blank">Pigman</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <div id="player1" class="aplayer"></div>
+<script src="/js/src/APlayer.min.js"></script>
+<script type="text/javascript">
+var ap = new APlayer({
+    element: document.getElementById('player1'),                       // Optional, player element
+    narrow: false,                                                     // Optional, narrow style
+    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    mutex: true,                                                       // Optional, pause other players when this player playing
+    theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
+    mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
+    preload: 'metadata',                                               // Optional, the way to load music, can be 'none' 'metadata' 'auto', default: 'auto'
+    listmaxheight: '513px',                                             // Optional, max height of play list
+    music: {                                                           // Required, music info, see: ###With playlist
+        title: 'Numb',                                          // Required, music title
+        author: 'Linkin-park',                                              // Required, music author
+        url: 'https://music.163.com/song/media/outer/url?id=4153366.mp3',                // Required, music url
+        pic: '/images/visitor.jpg',                                   // Optional, music picture
+    }
+});
+</script>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器搭建SSR的流程与步骤"><span class="nav-number">1.</span> <span class="nav-text">服务器搭建SSR的流程与步骤</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#购买服务器"><span class="nav-number"></span> <span class="nav-text">购买服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器的基本配置"><span class="nav-number"></span> <span class="nav-text">服务器的基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Shadowsocks-服务器端"><span class="nav-number"></span> <span class="nav-text">安装Shadowsocks 服务器端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装TCP加速软件"><span class="nav-number"></span> <span class="nav-text">安装TCP加速软件</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+
+     <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="200" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://Mypipi.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CYP</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://Mypipi.github.io">CYP</a> 提供支持</div>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <script type="text/javascript">
+/* 鼠标特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+   $("body").click(function(e) {
+       var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善");
+       var $i = $("<span/>").text(a[a_idx]);
+       a_idx = (a_idx + 1) % a.length;
+       var x = e.pageX,
+       y = e.pageY;
+       $i.css({
+           "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+           "top": y - 20,
+           "left": x,
+           "position": "absolute",
+           "font-weight": "bold",
+           "color": "#ff6651"
+       });
+       $("body").append($i);
+       $i.animate({
+           "top": y - 180,
+           "opacity": 0
+       },
+       1500,
+       function() {
+           $i.remove();
+       });
+   });
+});
+    </script>
+
+  
+</body>
+</html>
