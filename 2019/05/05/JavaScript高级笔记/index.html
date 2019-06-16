@@ -1,4 +1,505 @@
-<!DOCTYPE html><html class="theme-next gemini use-motion" lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="/lib/pace/pace.min.js?v=1.0.2"></script><link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4"><link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222"><meta name="keywords" content="CYP, Blog"><meta name="description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容 获取页面标签(元素)对象：Element document.getElementById(“id值”):通过元素的id获取元素对象  操作Element对象：   修改属性值： 明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置       修改标签体内容： 属性：innerHTML 获取元素对象 使用innerHTM"><meta property="og:type" content="article"><meta property="og:title" content="JavaScript"><meta property="og:url" content="http://ypeng.xyz/2019/05/05/JavaScript高级笔记/index.html"><meta property="og:site_name" content="CYP | Blog"><meta property="og:description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容 获取页面标签(元素)对象：Element document.getElementById(“id值”):通过元素的id获取元素对象  操作Element对象：   修改属性值： 明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置       修改标签体内容： 属性：innerHTML 获取元素对象 使用innerHTM"><meta property="og:locale" content="zh-Hans"><meta property="og:updated_time" content="2019-05-23T15:48:01.694Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="JavaScript"><meta name="twitter:description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容 获取页面标签(元素)对象：Element document.getElementById(“id值”):通过元素的id获取元素对象  操作Element对象：   修改属性值： 明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置       修改标签体内容： 属性：innerHTML 获取元素对象 使用innerHTM"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Gemini",version:"5.1.4",sidebar:{position:"left",display:"post",offset:12,b2t:!1,scrollpercent:!0,onmobile:!0},fancybox:!0,tabs:!0,motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://ypeng.xyz/2019/05/05/JavaScript高级笔记/"><title>JavaScript | CYP | Blog</title></head><body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">CYP | Blog</span><span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">This is a small snake!</p></div><div class="site-nav-toggle"> <button><span class="btn-bar"></span><span class="btn-bar"></span><span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br> 首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br> 关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br> 标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br> 分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br> 归档</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://ypeng.xyz/2019/05/05/JavaScript高级笔记/"><span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person"><meta itemprop="name" content="CYP"><meta itemprop="description" content=""><meta itemprop="image" content="https://i.postimg.cc/gJv9Df15/favicon.jpg"></span><span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization"><meta itemprop="name" content="CYP | Blog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">JavaScript</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i></span> <span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T21:53:07+08:00">2019-05-05</time></span> <span class="post-category"><span class="post-meta-divider">|</span><span class="post-meta-item-icon"><i class="fa fa-folder-o"></i></span> <span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/html/" itemprop="url" rel="index"><span itemprop="name">html</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><h2 id="DOM简单学习：为了满足案例要求"><a href="#DOM简单学习：为了满足案例要求" class="headerlink" title="DOM简单学习：为了满足案例要求"></a>DOM简单学习：为了满足案例要求</h2><ul><li>功能：控制html文档的内容</li><li>获取页面标签(元素)对象：Element</li><li><p>document.getElementById(“id值”):通过元素的id获取元素对象</p></li><li><p>操作Element对象：</p></li><li><ol><li>修改属性值：<ol><li>明确获取的对象是哪一个？</li><li>查看API文档，找其中有哪些属性可以设置</li></ol></li></ol></li></ul><ol start="2"><li>修改标签体内容：<ul><li>属性：innerHTML<ol><li>获取元素对象</li><li>使用innerHTML属性修改标签体内容</li></ol></li></ul></li></ol><h2 id="事件简单学习"><a href="#事件简单学习" class="headerlink" title="事件简单学习"></a>事件简单学习</h2><ul><li><p>功能： 某些组件被执行了某些操作后，触发某些代码的执行。</p><ul><li>造句： xxx被xxx,我就xxx<ul><li>我方水晶被摧毁后，我就责备对友。</li><li>敌方水晶被摧毁后，我就夸奖自己。</li></ul></li></ul></li><li><p>如何绑定事件</p><ol><li><p>直接在html标签上，指定事件的属性(操作)，属性值就是js代码</p><ol><li>事件：onclick— 单击事件</li></ol></li><li><p>通过js获取元素对象，指定事件属性，设置一个函数</p></li></ol><ul><li>代码：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"light"</span> <span class="attr">src</span>=<span class="string">"img/off.gif"</span>  <span class="attr">onclick</span>=<span class="string">"fun();"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"light2"</span> <span class="attr">src</span>=<span class="string">"img/off.gif"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	    <span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">	        alert(<span class="string">'我被点了'</span>);</span></span><br><span class="line"><span class="actionscript">	        alert(<span class="string">'我又被点了'</span>);</span></span><br><span class="line"><span class="undefined">	    &#125;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="actionscript">	    <span class="function"><span class="keyword">function</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">	        alert(<span class="string">'咋老点我？'</span>);</span></span><br><span class="line"><span class="undefined">	    &#125;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="actionscript">	    <span class="comment">//1.获取light2对象</span></span></span><br><span class="line"><span class="javascript">	    <span class="keyword">var</span> light2 = <span class="built_in">document</span>.getElementById(<span class="string">"light2"</span>);</span></span><br><span class="line"><span class="actionscript">	    <span class="comment">//2.绑定事件</span></span></span><br><span class="line"><span class="undefined">	    light2.onclick = fun2;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ul></li><li><p>案例1：电灯开关</p><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>电灯开关<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"light"</span> <span class="attr">src</span>=<span class="string">"img/off.gif"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    /*</span></span><br><span class="line"><span class="undefined">        分析：</span></span><br><span class="line"><span class="undefined">            1.获取图片对象</span></span><br><span class="line"><span class="undefined">            2.绑定单击事件</span></span><br><span class="line"><span class="undefined">            3.每次点击切换图片</span></span><br><span class="line"><span class="undefined">                * 规则：</span></span><br><span class="line"><span class="undefined">                    * 如果灯是开的 on,切换图片为 off</span></span><br><span class="line"><span class="undefined">                    * 如果灯是关的 off,切换图片为 on</span></span><br><span class="line"><span class="undefined">                * 使用标记flag来完成</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">     */</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="comment">//1.获取图片对象</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> light = <span class="built_in">document</span>.getElementById(<span class="string">"light"</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> flag = <span class="literal">false</span>;<span class="comment">//代表灯是灭的。 off图片</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="comment">//2.绑定单击事件</span></span></span><br><span class="line"><span class="actionscript">    light.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">if</span>(flag)&#123;<span class="comment">//判断如果灯是开的，则灭掉</span></span></span><br><span class="line"><span class="actionscript">            light.src = <span class="string">"img/off.gif"</span>;</span></span><br><span class="line"><span class="actionscript">            flag = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">        &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//如果灯是灭的，则打开</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">            light.src = <span class="string">"img/on.gif"</span>;</span></span><br><span class="line"><span class="actionscript">            flag = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ul><h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM:"></a>BOM:</h1><ol><li><p>概念：Browser Object Model 浏览器对象模型</p><ul><li>将浏览器的各个组成部分封装成对象。</li></ul></li><li><p>组成：</p><ul><li>Window：窗口对象</li><li>Navigator：浏览器对象</li><li>Screen：显示器屏幕对象</li><li>History：历史记录对象</li><li>Location：地址栏对象</li></ul></li><li><p>Window：窗口对象</p><ol><li>创建</li><li><p>方法</p><ol><li>与弹出框有关的方法：<br>alert()显示带有一段消息和一个确认按钮的警告框。<br>confirm()显示带有一段消息以及确认按钮和取消按钮的对话框。<ul><li>如果用户点击确定按钮，则方法返回true</li><li>如果用户点击取消按钮，则方法返回false<br>prompt()显示可提示用户输入的对话框。</li><li>返回值：获取用户输入的值</li></ul></li><li>与打开关闭有关的方法：<br>close()关闭浏览器窗口。<ul><li>谁调用我 ，我关谁<br>open()打开一个新的浏览器窗口</li><li>返回新的Window对象</li></ul></li><li><p>与定时器有关的方式<br>setTimeout()在指定的毫秒数后调用函数或计算表达式。</p><ul><li>参数：<ol><li>js代码或者方法对象</li><li>毫秒值</li></ol></li><li>返回值：唯一标识，用于取消定时器<br>clearTimeout()取消由 setTimeout() 方法设置的 timeout。</li></ul><p>setInterval()按照指定的周期（以毫秒计）来调用函数或计算表达式。<br>clearInterval()取消由 setInterval() 设置的 timeout。</p></li></ol></li><li><p>属性：</p><ol><li>获取其他BOM对象：<br> history<br> location<br> Navigator<br> Screen:</li><li>获取DOM对象<br> document</li></ol></li><li>特点<ul><li>Window对象不需要创建可以直接使用 window使用。 window.方法名();</li><li>window引用可以省略。 方法名();</li></ul></li></ol></li></ol><ol start="4"><li><p>Location：地址栏对象</p><ol><li><p>创建(获取)：</p><ol><li>window.location</li><li>location</li></ol></li><li><p>方法：</p><ul><li>reload()重新加载当前文档。刷新</li></ul></li><li>属性<ul><li>href设置或返回完整的 URL。</li></ul></li></ol></li></ol><ol start="5"><li><p>History：历史记录对象</p><pre><code>1. 创建(获取)：
+<!DOCTYPE html>
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CYP, Blog">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容 获取页面标签(元素)对象：Element document.getElementById(“id值”):通过元素的id获取元素对象  操作Element对象：   修改属性值： 明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置       修改标签体内容： 属性：innerHTML 获取元素对象 使用innerHTM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript">
+<meta property="og:url" content="http://ypeng.xyz/2019/05/05/JavaScript高级笔记/index.html">
+<meta property="og:site_name" content="CYP | Blog">
+<meta property="og:description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容 获取页面标签(元素)对象：Element document.getElementById(“id值”):通过元素的id获取元素对象  操作Element对象：   修改属性值： 明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置       修改标签体内容： 属性：innerHTML 获取元素对象 使用innerHTM">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-23T15:48:01.694Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript">
+<meta name="twitter:description" content="DOM简单学习：为了满足案例要求 功能：控制html文档的内容 获取页面标签(元素)对象：Element document.getElementById(“id值”):通过元素的id获取元素对象  操作Element对象：   修改属性值： 明确获取的对象是哪一个？ 查看API文档，找其中有哪些属性可以设置       修改标签体内容： 属性：innerHTML 获取元素对象 使用innerHTM">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://ypeng.xyz/2019/05/05/JavaScript高级笔记/">
+
+
+
+
+
+  <title>JavaScript | CYP | Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CYP | Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">This is a small snake!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+
+
+    
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://ypeng.xyz/2019/05/05/JavaScript高级笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CYP">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://i.postimg.cc/gJv9Df15/favicon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CYP | Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaScript</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T21:53:07+08:00">
+                2019-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/html/" itemprop="url" rel="index">
+                    <span itemprop="name">html</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="DOM简单学习：为了满足案例要求"><a href="#DOM简单学习：为了满足案例要求" class="headerlink" title="DOM简单学习：为了满足案例要求"></a>DOM简单学习：为了满足案例要求</h2><ul>
+<li>功能：控制html文档的内容</li>
+<li>获取页面标签(元素)对象：Element</li>
+<li><p>document.getElementById(“id值”):通过元素的id获取元素对象</p>
+</li>
+<li><p>操作Element对象：</p>
+</li>
+<li><ol>
+<li>修改属性值：<ol>
+<li>明确获取的对象是哪一个？</li>
+<li>查看API文档，找其中有哪些属性可以设置</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>修改标签体内容：<ul>
+<li>属性：innerHTML<ol>
+<li>获取元素对象</li>
+<li>使用innerHTML属性修改标签体内容</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="事件简单学习"><a href="#事件简单学习" class="headerlink" title="事件简单学习"></a>事件简单学习</h2><ul>
+<li><p>功能： 某些组件被执行了某些操作后，触发某些代码的执行。</p>
+<ul>
+<li>造句：  xxx被xxx,我就xxx<ul>
+<li>我方水晶被摧毁后，我就责备对友。</li>
+<li>敌方水晶被摧毁后，我就夸奖自己。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>如何绑定事件</p>
+<ol>
+<li><p>直接在html标签上，指定事件的属性(操作)，属性值就是js代码</p>
+<ol>
+<li>事件：onclick— 单击事件</li>
+</ol>
+</li>
+<li><p>通过js获取元素对象，指定事件属性，设置一个函数</p>
+</li>
+</ol>
+<ul>
+<li>代码：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"light"</span> <span class="attr">src</span>=<span class="string">"img/off.gif"</span>  <span class="attr">onclick</span>=<span class="string">"fun();"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"light2"</span> <span class="attr">src</span>=<span class="string">"img/off.gif"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">	    <span class="function"><span class="keyword">function</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">	        alert(<span class="string">'我被点了'</span>);</span></span><br><span class="line"><span class="actionscript">	        alert(<span class="string">'我又被点了'</span>);</span></span><br><span class="line"><span class="undefined">	    &#125;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="actionscript">	    <span class="function"><span class="keyword">function</span> <span class="title">fun2</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">	        alert(<span class="string">'咋老点我？'</span>);</span></span><br><span class="line"><span class="undefined">	    &#125;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="actionscript">	    <span class="comment">//1.获取light2对象</span></span></span><br><span class="line"><span class="javascript">	    <span class="keyword">var</span> light2 = <span class="built_in">document</span>.getElementById(<span class="string">"light2"</span>);</span></span><br><span class="line"><span class="actionscript">	    <span class="comment">//2.绑定事件</span></span></span><br><span class="line"><span class="undefined">	    light2.onclick = fun2;</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="undefined">	</span></span><br><span class="line"><span class="undefined">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>案例1：电灯开关</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>电灯开关<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"light"</span> <span class="attr">src</span>=<span class="string">"img/off.gif"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">    /*</span></span><br><span class="line"><span class="undefined">        分析：</span></span><br><span class="line"><span class="undefined">            1.获取图片对象</span></span><br><span class="line"><span class="undefined">            2.绑定单击事件</span></span><br><span class="line"><span class="undefined">            3.每次点击切换图片</span></span><br><span class="line"><span class="undefined">                * 规则：</span></span><br><span class="line"><span class="undefined">                    * 如果灯是开的 on,切换图片为 off</span></span><br><span class="line"><span class="undefined">                    * 如果灯是关的 off,切换图片为 on</span></span><br><span class="line"><span class="undefined">                * 使用标记flag来完成</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">     */</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="comment">//1.获取图片对象</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> light = <span class="built_in">document</span>.getElementById(<span class="string">"light"</span>);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> flag = <span class="literal">false</span>;<span class="comment">//代表灯是灭的。 off图片</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">    <span class="comment">//2.绑定单击事件</span></span></span><br><span class="line"><span class="actionscript">    light.onclick = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">if</span>(flag)&#123;<span class="comment">//判断如果灯是开的，则灭掉</span></span></span><br><span class="line"><span class="actionscript">            light.src = <span class="string">"img/off.gif"</span>;</span></span><br><span class="line"><span class="actionscript">            flag = <span class="literal">false</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">        &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//如果灯是灭的，则打开</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">            light.src = <span class="string">"img/on.gif"</span>;</span></span><br><span class="line"><span class="actionscript">            flag = <span class="literal">true</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined">    </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="BOM"><a href="#BOM" class="headerlink" title="BOM:"></a>BOM:</h1><ol>
+<li><p>概念：Browser Object Model 浏览器对象模型</p>
+<ul>
+<li>将浏览器的各个组成部分封装成对象。</li>
+</ul>
+</li>
+<li><p>组成：</p>
+<ul>
+<li>Window：窗口对象</li>
+<li>Navigator：浏览器对象</li>
+<li>Screen：显示器屏幕对象</li>
+<li>History：历史记录对象</li>
+<li>Location：地址栏对象</li>
+</ul>
+</li>
+<li><p>Window：窗口对象</p>
+<ol>
+<li>创建</li>
+<li><p>方法</p>
+<ol>
+<li>与弹出框有关的方法：<br>alert()显示带有一段消息和一个确认按钮的警告框。<br>confirm()显示带有一段消息以及确认按钮和取消按钮的对话框。<ul>
+<li>如果用户点击确定按钮，则方法返回true</li>
+<li>如果用户点击取消按钮，则方法返回false<br>prompt()显示可提示用户输入的对话框。</li>
+<li>返回值：获取用户输入的值</li>
+</ul>
+</li>
+<li>与打开关闭有关的方法：<br>close()关闭浏览器窗口。<ul>
+<li>谁调用我 ，我关谁<br>open()打开一个新的浏览器窗口</li>
+<li>返回新的Window对象</li>
+</ul>
+</li>
+<li><p>与定时器有关的方式<br>setTimeout()在指定的毫秒数后调用函数或计算表达式。</p>
+<ul>
+<li>参数：<ol>
+<li>js代码或者方法对象</li>
+<li>毫秒值</li>
+</ol>
+</li>
+<li>返回值：唯一标识，用于取消定时器<br>clearTimeout()取消由 setTimeout() 方法设置的 timeout。</li>
+</ul>
+<p>setInterval()按照指定的周期（以毫秒计）来调用函数或计算表达式。<br>clearInterval()取消由 setInterval() 设置的 timeout。</p>
+</li>
+</ol>
+</li>
+<li><p>属性：</p>
+<ol>
+<li>获取其他BOM对象：<br> history<br> location<br> Navigator<br> Screen:</li>
+<li>获取DOM对象<br> document</li>
+</ol>
+</li>
+<li>特点<ul>
+<li>Window对象不需要创建可以直接使用 window使用。 window.方法名();</li>
+<li>window引用可以省略。  方法名();</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="4">
+<li><p>Location：地址栏对象</p>
+<ol>
+<li><p>创建(获取)：</p>
+<ol>
+<li>window.location</li>
+<li>location</li>
+</ol>
+</li>
+<li><p>方法：</p>
+<ul>
+<li>reload()重新加载当前文档。刷新</li>
+</ul>
+</li>
+<li>属性<ul>
+<li>href设置或返回完整的 URL。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ol start="5">
+<li><p>History：历史记录对象</p>
+<pre><code>1. 创建(获取)：
     1. window.history
     2. history
 
@@ -11,4 +512,662 @@
             * 负数：后退几个历史记录
  3. 属性：
      * length返回当前窗口历史列表中的 URL 数量。
-</code></pre></li></ol><h2 id="DOM："><a href="#DOM：" class="headerlink" title="DOM："></a>DOM：</h2><ul><li><p>概念： Document Object Model 文档对象模型</p><ul><li>将标记语言文档的各个组成部分，封装为对象。可以使用这些对象，对标记语言文档进行CRUD的动态操作</li></ul></li><li><p>W3C DOM 标准被分为 3 个不同的部分：</p><ul><li><p>核心 DOM - 针对任何结构化文档的标准模型</p><ul><li>Document：文档对象</li><li>Element：元素对象</li><li>Attribute：属性对象</li><li>Text：文本对象</li><li><p>Comment:注释对象</p></li><li><p>Node：节点对象，其他5个的父对象</p></li></ul></li><li>XML DOM - 针对 XML 文档的标准模型</li><li>HTML DOM - 针对 HTML 文档的标准模型</li></ul></li></ul><ul><li>核心DOM模型：<ul><li>Document：文档对象<ol><li>创建(获取)：在html dom模型中可以使用window对象来获取<ol><li>window.document</li><li>document</li></ol></li><li>方法：<ol><li>获取Element对象：<ol><li>getElementById()： 根据id属性值获取元素对象。id属性值一般唯一</li><li>getElementsByTagName()：根据元素名称获取元素对象们。返回值是一个数组</li><li>getElementsByClassName():根据Class属性值获取元素对象们。返回值是一个数组</li><li>getElementsByName(): 根据name属性值获取元素对象们。返回值是一个数组</li></ol></li><li>创建其他DOM对象：<br>createAttribute(name)<br>createComment()<br>createElement()<br>createTextNode()</li></ol></li><li>属性</li></ol></li><li>Element：元素对象<ol><li>获取/创建：通过document来获取和创建</li><li>方法：<ol><li>removeAttribute()：删除属性</li><li>setAttribute()：设置属性</li></ol></li></ol></li><li>Node：节点对象，其他5个的父对象nam<ul><li>特点：所有dom对象都可以被认为是一个节点</li><li>方法：<ul><li>CRUD dom树：<ul><li>appendChild()：向节点的子节点列表的结尾添加新的子节点。</li><li>removeChild()：删除（并返回）当前节点的指定子节点。</li><li>replaceChild()：用新节点替换一个子节点。</li></ul></li></ul></li><li>属性：<ul><li>parentNode 返回节点的父节点。</li></ul></li></ul></li></ul></li></ul><ul><li><p>HTML DOM</p><ol><li>标签体的设置和获取：innerHTML</li><li>使用html元素对象的属性</li><li><p>控制元素样式</p><ol><li><p>使用元素的style属性来设置<br> 如：</p><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//修改样式方式<span class="number">1</span></span><br><span class="line">     div1.<span class="built_in">style</span>.<span class="built_in">border</span> = <span class="string">"1px solid red"</span>;</span><br><span class="line">     div1.<span class="built_in">style</span>.<span class="built_in">width</span> = <span class="string">"200px"</span>;</span><br><span class="line">     //<span class="built_in">font</span>-size--&gt; fontSize</span><br><span class="line">     div1.<span class="built_in">style</span>.fontSize = <span class="string">"20px"</span>;</span><br></pre></td></tr></table></figure></li><li><p>提前定义好类选择器的样式，通过元素的className属性来设置其class属性值。</p></li></ol></li></ol></li></ul><h2 id="事件监听机制："><a href="#事件监听机制：" class="headerlink" title="事件监听机制："></a>事件监听机制：</h2><ul><li>概念：某些组件被执行了某些操作后，触发某些代码的执行。<ul><li>事件：某些操作。如： 单击，双击，键盘按下了，鼠标移动了</li><li>事件源：组件。如： 按钮 文本输入框…</li><li>监听器：代码。</li><li>注册监听：将事件，事件源，监听器结合在一起。 当事件源上发生了某个事件，则触发执行某个监听器代码。</li></ul></li></ul><ul><li>常见的事件：</li></ul><ol><li>点击事件：<ol><li>onclick：单击事件</li><li>ondblclick：双击事件</li></ol></li><li><p>焦点事件</p><ol><li>onblur：失去焦点</li><li>onfocus:元素获得焦点。</li></ol></li><li><p>加载事件：</p><ol><li>onload：一张页面或一幅图像完成加载。</li></ol></li><li><p>鼠标事件：</p><ol><li>onmousedown鼠标按钮被按下。</li><li>onmouseup鼠标按键被松开。</li><li>onmousemove鼠标被移动。</li><li>onmouseover鼠标移到某元素之上。</li><li>onmouseout鼠标从某元素移开。</li></ol></li></ol><ol start="5"><li><p>键盘事件：</p><ol><li>onkeydown某个键盘按键被按下。</li><li>onkeyup 某个键盘按键被松开。</li><li>onkeypress某个键盘按键被按下并松开。</li></ol></li><li><p>选择和改变</p><ol><li>onchange域的内容被改变。</li><li>onselect文本被选中。</li></ol></li><li><p>表单事件：</p><ol><li>onsubmit确认按钮被点击。</li><li>onreset重置按钮被点击。</li></ol></li></ol></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2019/05/05/HTML课堂笔记/" rel="next" title="HTML笔记"><i class="fa fa-chevron-left"></i> HTML笔记</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"> <a href="/2019/05/05/JavaScript基础笔记/" rel="prev" title="JavaScript笔记">JavaScript笔记<i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"></div></div></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div id="sidebar-dimmer"></div><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap"> 文章目录</li><li class="sidebar-nav-overview" data-target="site-overview-wrap"> 站点概览</li></ul><section class="site-overview-wrap sidebar-panel"><div class="site-overview"><div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person"> <img class="site-author-image" itemprop="image" src="https://i.postimg.cc/gJv9Df15/favicon.jpg" alt="CYP"><p class="site-author-name" itemprop="name">CYP</p><p class="site-description motion-element" itemprop="description">To be better!</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"> <a href="/archives/"><span class="site-state-item-count">33</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"> <span class="site-state-item-count">10</span> <span class="site-state-item-name">分类</span></div><div class="site-state-item site-state-tags"> <span class="site-state-item-count">5</span> <span class="site-state-item-name">标签</span></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Mypipi" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub</a></span><span class="links-of-author-item"><a href="mailto:277832294@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail</a></span></div><div class="links-of-blogroll motion-element links-of-blogroll-block"><div class="links-of-blogroll-title"><i class="fa fa-fw fa-globe"></i> 友情链接</div><ul class="links-of-blogroll-list"><li class="links-of-blogroll-item"> <a href="http://pigman.xyz/" title="Pigman" target="_blank">Pigman</a></li></ul></div><div id="player1" class="aplayer"></div><script src="/js/src/APlayer.min.js"></script><script type="text/javascript">var ap=new APlayer({element:document.getElementById("player1"),narrow:!1,autoplay:!1,showlrc:0,mutex:!0,theme:"#e6d0b2",mode:"random",preload:"metadata",listmaxheight:"513px",music:{title:"Numb",author:"Linkin-park",url:"https://music.163.com/song/media/outer/url?id=4153366.mp3",pic:"/images/visitor.jpg"}})</script></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM简单学习：为了满足案例要求"><span class="nav-number">1.</span> <span class="nav-text">DOM简单学习：为了满足案例要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件简单学习"><span class="nav-number">2.</span> <span class="nav-text">事件简单学习</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#BOM"><span class="nav-number"></span> <span class="nav-text">BOM:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM："><span class="nav-number">1.</span> <span class="nav-text">DOM：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件监听机制："><span class="nav-number">2.</span> <span class="nav-text">事件监听机制：</span></a></li></ol></li></div></div></section></div></aside></div></main><footer id="footer" class="footer"><link rel="stylesheet" href="/live2d/css/live2d.css"><div id="landlord"><div class="message" style="opacity:0"></div><canvas id="live2d" width="200" height="300" class="live2d"></canvas><div class="hide-button">隐藏</div></div><script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script><script type="text/javascript">var message_Path="/live2d/",home_Path="https://Mypipi.github.io/"</script><script type="text/javascript" src="/live2d/js/live2d.js"></script><script type="text/javascript" src="/live2d/js/message.js"></script><script type="text/javascript">loadlive2d("live2d","/live2d/assets/koharu.model.json")</script><div class="footer-inner"><script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; <span itemprop="copyrightYear">2019</span><span class="with-love"><i class="fa fa-heart"></i></span> <span class="author" itemprop="copyrightHolder">CYP</span></div><div class="powered-by"><i class="fa fa-user-md"></i> <span id="busuanzi_container_site_uv">本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="powered-by">由 <a class="theme-link" target="_blank" href="https://Mypipi.github.io">CYP</a> 提供支持</div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span id="scrollpercent"><span>0</span>%</span></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script><script type="text/javascript">var a_idx=0;jQuery(document).ready(function(i){i("body").click(function(a){var e=new Array("富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善"),o=i("<span/>").text(e[a_idx]);a_idx=(a_idx+1)%e.length;var t=a.pageX,n=a.pageY;o.css({"z-index":1e69,top:n-20,left:t,position:"absolute","font-weight":"bold",color:"#ff6651"}),i("body").append(o),o.animate({top:n-180,opacity:0},1500,function(){o.remove()})})})</script></body></html>
+</code></pre></li>
+</ol>
+<h2 id="DOM："><a href="#DOM：" class="headerlink" title="DOM："></a>DOM：</h2><ul>
+<li><p>概念： Document Object Model 文档对象模型</p>
+<ul>
+<li>将标记语言文档的各个组成部分，封装为对象。可以使用这些对象，对标记语言文档进行CRUD的动态操作</li>
+</ul>
+</li>
+<li><p>W3C DOM 标准被分为 3 个不同的部分：</p>
+<ul>
+<li><p>核心 DOM - 针对任何结构化文档的标准模型</p>
+<ul>
+<li>Document：文档对象</li>
+<li>Element：元素对象</li>
+<li>Attribute：属性对象</li>
+<li>Text：文本对象</li>
+<li><p>Comment:注释对象</p>
+</li>
+<li><p>Node：节点对象，其他5个的父对象</p>
+</li>
+</ul>
+</li>
+<li>XML DOM - 针对 XML 文档的标准模型</li>
+<li>HTML DOM - 针对 HTML 文档的标准模型</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>核心DOM模型：<ul>
+<li>Document：文档对象<ol>
+<li>创建(获取)：在html dom模型中可以使用window对象来获取<ol>
+<li>window.document</li>
+<li>document</li>
+</ol>
+</li>
+<li>方法：<ol>
+<li>获取Element对象：<ol>
+<li>getElementById()： 根据id属性值获取元素对象。id属性值一般唯一</li>
+<li>getElementsByTagName()：根据元素名称获取元素对象们。返回值是一个数组</li>
+<li>getElementsByClassName():根据Class属性值获取元素对象们。返回值是一个数组</li>
+<li>getElementsByName(): 根据name属性值获取元素对象们。返回值是一个数组</li>
+</ol>
+</li>
+<li>创建其他DOM对象：<br>createAttribute(name)<br>createComment()<br>createElement()<br>createTextNode()</li>
+</ol>
+</li>
+<li>属性</li>
+</ol>
+</li>
+<li>Element：元素对象<ol>
+<li>获取/创建：通过document来获取和创建</li>
+<li>方法：<ol>
+<li>removeAttribute()：删除属性</li>
+<li>setAttribute()：设置属性</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Node：节点对象，其他5个的父对象nam<ul>
+<li>特点：所有dom对象都可以被认为是一个节点</li>
+<li>方法：<ul>
+<li>CRUD dom树：<ul>
+<li>appendChild()：向节点的子节点列表的结尾添加新的子节点。</li>
+<li>removeChild()：删除（并返回）当前节点的指定子节点。</li>
+<li>replaceChild()：用新节点替换一个子节点。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>属性：<ul>
+<li>parentNode 返回节点的父节点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>HTML DOM</p>
+<ol>
+<li>标签体的设置和获取：innerHTML</li>
+<li>使用html元素对象的属性</li>
+<li><p>控制元素样式</p>
+<ol>
+<li><p>使用元素的style属性来设置<br> 如：</p>
+ <figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//修改样式方式<span class="number">1</span></span><br><span class="line">     div1.<span class="built_in">style</span>.<span class="built_in">border</span> = <span class="string">"1px solid red"</span>;</span><br><span class="line">     div1.<span class="built_in">style</span>.<span class="built_in">width</span> = <span class="string">"200px"</span>;</span><br><span class="line">     //<span class="built_in">font</span>-size--&gt; fontSize</span><br><span class="line">     div1.<span class="built_in">style</span>.fontSize = <span class="string">"20px"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提前定义好类选择器的样式，通过元素的className属性来设置其class属性值。</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="事件监听机制："><a href="#事件监听机制：" class="headerlink" title="事件监听机制："></a>事件监听机制：</h2><ul>
+<li>概念：某些组件被执行了某些操作后，触发某些代码的执行。<ul>
+<li>事件：某些操作。如： 单击，双击，键盘按下了，鼠标移动了</li>
+<li>事件源：组件。如： 按钮 文本输入框…</li>
+<li>监听器：代码。</li>
+<li>注册监听：将事件，事件源，监听器结合在一起。 当事件源上发生了某个事件，则触发执行某个监听器代码。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>常见的事件：</li>
+</ul>
+<ol>
+<li>点击事件：<ol>
+<li>onclick：单击事件</li>
+<li>ondblclick：双击事件</li>
+</ol>
+</li>
+<li><p>焦点事件</p>
+<ol>
+<li>onblur：失去焦点</li>
+<li>onfocus:元素获得焦点。</li>
+</ol>
+</li>
+<li><p>加载事件：</p>
+<ol>
+<li>onload：一张页面或一幅图像完成加载。</li>
+</ol>
+</li>
+<li><p>鼠标事件：</p>
+<ol>
+<li>onmousedown鼠标按钮被按下。</li>
+<li>onmouseup鼠标按键被松开。</li>
+<li>onmousemove鼠标被移动。</li>
+<li>onmouseover鼠标移到某元素之上。</li>
+<li>onmouseout鼠标从某元素移开。</li>
+</ol>
+</li>
+</ol>
+<ol start="5">
+<li><p>键盘事件：</p>
+<ol>
+<li>onkeydown某个键盘按键被按下。</li>
+<li>onkeyup    某个键盘按键被松开。</li>
+<li>onkeypress某个键盘按键被按下并松开。</li>
+</ol>
+</li>
+<li><p>选择和改变</p>
+<ol>
+<li>onchange域的内容被改变。</li>
+<li>onselect文本被选中。</li>
+</ol>
+</li>
+<li><p>表单事件：</p>
+<ol>
+<li>onsubmit确认按钮被点击。</li>
+<li>onreset重置按钮被点击。</li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/HTML课堂笔记/" rel="next" title="HTML笔记">
+                <i class="fa fa-chevron-left"></i> HTML笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/06/CSS笔记/" rel="prev" title="CSS笔记">
+                CSS笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://i.postimg.cc/gJv9Df15/favicon.jpg" alt="CYP">
+            
+              <p class="site-author-name" itemprop="name">CYP</p>
+              <p class="site-description motion-element" itemprop="description">To be better!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Mypipi" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:277832294@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://pigman.xyz/" title="Pigman" target="_blank">Pigman</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          <div id="player1" class="aplayer"></div>
+<script src="/js/src/APlayer.min.js"></script>
+<script type="text/javascript">
+var ap = new APlayer({
+    element: document.getElementById('player1'),                       // Optional, player element
+    narrow: false,                                                     // Optional, narrow style
+    autoplay: false,                                                    // Optional, autoplay song(s), not supported by mobile browsers
+    showlrc: 0,                                                        // Optional, show lrc, can be 0, 1, 2, see: ###With lrc
+    mutex: true,                                                       // Optional, pause other players when this player playing
+    theme: '#e6d0b2',                                                  // Optional, theme color, default: #b7daff
+    mode: 'random',                                                    // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`
+    preload: 'metadata',                                               // Optional, the way to load music, can be 'none' 'metadata' 'auto', default: 'auto'
+    listmaxheight: '513px',                                             // Optional, max height of play list
+    music: {                                                           // Required, music info, see: ###With playlist
+        title: 'Numb',                                          // Required, music title
+        author: 'Linkin-park',                                              // Required, music author
+        url: 'https://music.163.com/song/media/outer/url?id=4153366.mp3',                // Required, music url
+        pic: '/images/visitor.jpg',                                   // Optional, music picture
+    }
+});
+</script>
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM简单学习：为了满足案例要求"><span class="nav-number">1.</span> <span class="nav-text">DOM简单学习：为了满足案例要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件简单学习"><span class="nav-number">2.</span> <span class="nav-text">事件简单学习</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#BOM"><span class="nav-number"></span> <span class="nav-text">BOM:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM："><span class="nav-number">1.</span> <span class="nav-text">DOM：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件监听机制："><span class="nav-number">2.</span> <span class="nav-text">事件监听机制：</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+
+     <link rel="stylesheet" href="/live2d/css/live2d.css">
+      <div id="landlord">
+          <div class="message" style="opacity:0"></div>
+          <canvas id="live2d" width="200" height="300" class="live2d"></canvas>
+          <div class="hide-button">隐藏</div>
+      </div>
+
+      <script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+      <script type="text/javascript">
+          var message_Path = '/live2d/'
+          var home_Path = 'https://Mypipi.github.io/'
+      </script>
+      <script type="text/javascript" src="/live2d/js/live2d.js"></script>
+      <script type="text/javascript" src="/live2d/js/message.js"></script>
+      <script type="text/javascript">
+          loadlive2d("live2d", "/live2d/assets/koharu.model.json");
+      </script>
+
+
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CYP</span>
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://Mypipi.github.io">CYP</a> 提供支持</div>
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+  <script type="text/javascript">
+/* 鼠标特效 */
+var a_idx = 0;
+jQuery(document).ready(function($) {
+   $("body").click(function(e) {
+       var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正" ,"法治", "爱国", "敬业", "诚信", "友善");
+       var $i = $("<span/>").text(a[a_idx]);
+       a_idx = (a_idx + 1) % a.length;
+       var x = e.pageX,
+       y = e.pageY;
+       $i.css({
+           "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+           "top": y - 20,
+           "left": x,
+           "position": "absolute",
+           "font-weight": "bold",
+           "color": "#ff6651"
+       });
+       $("body").append($i);
+       $i.animate({
+           "top": y - 180,
+           "opacity": 0
+       },
+       1500,
+       function() {
+           $i.remove();
+       });
+   });
+});
+    </script>
+
+  
+</body>
+</html>
